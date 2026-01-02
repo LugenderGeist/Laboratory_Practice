@@ -30,23 +30,7 @@ OPT = -Og
 # paths
 #######################################
 # Build path
-ifeq ($(TARGET_SERIES)$(TARGET_VERSION), STM32F103C8)
-	BUILD_DIR = build_F103C8
-else ifeq ($(TARGET_SERIES)$(TARGET_VERSION), STM32F103C6)
-	BUILD_DIR = build_F103C6
-else ifeq ($(TARGET_SERIES)$(TARGET_VERSION), STM32F407VE)
-	BUILD_DIR = build_F407VE
-else ifeq ($(TARGET_SERIES)$(TARGET_VERSION), STM32F411VE)
-	BUILD_DIR = build_F411VE
-else ifeq ($(TARGET_SERIES)$(TARGET_VERSION), STM32F411CE)
-	BUILD_DIR = build_F411CE
-else ifeq ($(TARGET_SERIES)$(TARGET_VERSION), STM32F411RE)
-	BUILD_DIR = build_F411RE
-else ifeq ($(TARGET_SERIES)$(TARGET_VERSION), STM32F429ZI)
 	BUILD_DIR = build_F429ZI
-else ifeq ($(TARGET_SERIES)$(TARGET_VERSION), STM32F446RE)
-	BUILD_DIR = build_F446RE
-endif
 ######################################
 # selecting source
 ######################################
