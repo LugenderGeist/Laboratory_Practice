@@ -1,16 +1,6 @@
 # ------------------------------------------------
 # Generic Makefile (based on gcc)
 # ------------------------------------------------
-# List of supported controllers:
-#	STM32F446RE -- Target series -> STM32F446 | Target version -> RE
-# 	STM32F429ZI -- Target series -> STM32F429 | Target version -> ZI
-# 	STM32F411VE -- Target series -> STM32F411 | Target version -> VE
-#	STM32F411CE -- Target series -> STM32F411 | Target version -> CE
-#	STM32F411RE -- Target series -> STM32F411 | Target version -> RE
-# 	STM32F407VE -- Target series -> STM32F407 | Target version -> VE
-# 	STM32F103C8 -- Target series -> STM32F103 | Target version -> C8
-# 	STM32F103C6 -- Target series -> STM32F103 | Target version -> C6
-# ------------------------------------------------
 
 ######################################
 # target
@@ -29,69 +19,14 @@ OPT = -Og
 # paths
 #######################################
 # Build path
-ifeq ($(TARGET), STM32F103C8Tx)
-	BUILD_DIR = build_F103C8Tx
-else ifeq ($(TARGET), STM32F103x6)
-	BUILD_DIR = build_F103x6
-else ifeq ($(TARGET), STM32F407VET)
-	BUILD_DIR = build_F407VET
-else ifeq ($(TARGET), STM32F411VET)
-	BUILD_DIR = build_F411VET
-else ifeq ($(TARGET), STM32F429ZI)
+
 	BUILD_DIR = build_F429ZI
-else ifeq ($(TARGET), STM32F446RET)
-	BUILD_DIR = build_F446RET
-endif
+
 ######################################
 # selecting source
 ######################################
 # C sources
 
-ifeq ($(TARGET), STM32F103C8Tx)
-	SYS = CMSIS/Devices/STM32F1xx/Src/system_stm32f1xx.c \ CMSIS/Devices/Src/syscalls.c \ CMSIS/Devices/Src/sysmem.c
-	ASM = STMDevices/STM32F103C8Tx/startup_stm32f103xb.s
-	CMSIS_INC_DEV = CMSIS/Devices/STM32F1xx/Inc
-	CMSIS_INC_UNIT = CMSIS/Devices/STM32F1xx/Inc/STM32f103xB
-	CMSIS_INC = CMSIS/Include
-	LD = STMDevices/STM32F103C8Tx/STM32F103C8Tx_FLASH.ld
-	DEF = STM32F103xB
-	MCPU = cortex-m3
-	MFPU = NONE
-	TRGT_CFG = stm32f1x
-else ifeq ($(TARGET), STM32F103x6)
-	SYS = CMSIS/Devices/STM32F1xx/Src/system_stm32f1xx.c \ CMSIS/Devices/Src/syscalls.c \ CMSIS/Devices/Src/sysmem.c
-	ASM = STMDevices/STM32F103x6/startup_stm32f103x6.s
-	CMSIS_INC_DEV = CMSIS/Devices/STM32F1xx/Inc
-	CMSIS_INC_UNIT = CMSIS/Devices/STM32F1xx/Inc/STM32f103x6
-	CMSIS_INC = CMSIS/Include
-	LD = STMDevices/STM32F103x6/STM32F103X6_FLASH.ld
-	DEF = STM32F103x6
-	MCPU = cortex-m3
-	MFPU = NONE
-	TRGT_CFG = stm32f1x
-else ifeq ($(TARGET), STM32F407VET)
-	SYS = CMSIS/Devices/STM32F4xx/Src/system_stm32f4xx.c \ CMSIS/Devices/Src/syscalls.c \ CMSIS/Devices/Src/sysmem.c
-	ASM = STMDevices/STM32F407VET/startup_stm32f407xx.s
-	CMSIS_INC_DEV = CMSIS/Devices/STM32F4xx/Inc
-	CMSIS_INC_UNIT = CMSIS/Devices/STM32F4xx/Inc/STM32F407VE
-	CMSIS_INC = CMSIS/Include
-	LD = STMDevices/STM32F407VET/STM32F407VETx_FLASH.ld
-	DEF = STM32F407xx
-	MCPU = cortex-m4
-	MFPU = fpv4-sp-d16 
-	TRGT_CFG = stm32f4x
-else ifeq ($(TARGET), STM32F411VET)
-	SYS = CMSIS/Devices/STM32F4xx/Src/system_stm32f4xx.c \ CMSIS/Devices/Src/syscalls.c \ CMSIS/Devices/Src/sysmem.c
-	ASM = STMDevices/STM32F411VET/startup_stm32f411xe.s
-	CMSIS_INC_DEV = CMSIS/Devices/STM32F4xx/Inc
-	CMSIS_INC_UNIT = CMSIS/Devices/STM32F4xx/Inc/STM32F411VE
-	CMSIS_INC = CMSIS/Include
-	LD = STMDevices/STM32F411VET/STM32F411VETx_FLASH.ld
-	DEF = STM32F411xE
-	MCPU = cortex-m4
-	MFPU = fpv4-sp-d16
-	TRGT_CFG = stm32f4x
-else ifeq ($(TARGET), STM32F429ZI)
 	SYS = CMSIS/Devices/STM32F4xx/Src/system_stm32f4xx.c \ CMSIS/Devices/Src/syscalls.c \ CMSIS/Devices/Src/sysmem.c
 	ASM = STMDevices/STM32F429ZI/startup_stm32f429xx.s
 	CMSIS_INC_DEV = CMSIS/Devices/STM32F4xx/Inc
@@ -102,18 +37,7 @@ else ifeq ($(TARGET), STM32F429ZI)
 	MCPU = cortex-m4
 	MFPU = fpv4-sp-d16  #"vfpv4-d16"
 	TRGT_CFG = stm32f4x
-else ifeq ($(TARGET), STM32F446RET)
-	SYS = CMSIS/Devices/STM32F4xx/Src/system_stm32f4xx.c \ CMSIS/Devices/Src/syscalls.c \ CMSIS/Devices/Src/sysmem.c
-	ASM = STMDevices/STM32F446RET/startup_stm32f446xx.s
-	CMSIS_INC_DEV = CMSIS/Devices/STM32F4xx/Inc
-	CMSIS_INC_UNIT = CMSIS/Devices/STM32F4xx/Inc/STM32F446RE
-	CMSIS_INC = CMSIS/Include
-	LD = STMDevices/STM32F446RET/STM32F446RETx_FLASH.ld
-	DEF = STM32F446xx
-	MCPU = cortex-m4
-	MFPU = fpv4-sp-d16
-	TRGT_CFG = stm32f4x
-endif
+
 
 ######################################
 # source
