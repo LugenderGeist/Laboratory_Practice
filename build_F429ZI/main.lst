@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\cceCtLvx.s 			page 1
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccB5ODa8.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -42,67 +42,74 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\cceCtLvx.s 			page 1
   36              		.cfi_def_cfa_offset 8
   37              		.cfi_offset 3, -8
   38              		.cfi_offset 14, -4
-   5:Core/Src/main.c ****     GPIO_Init();
-  39              		.loc 1 5 5 view .LVU1
+   5:Core/Src/main.c **** 
+   6:Core/Src/main.c **** GPIO_Init();
+  39              		.loc 1 6 1 view .LVU1
   40 0002 FFF7FEFF 		bl	GPIO_Init
   41              	.LVL0:
-  42 0006 06E0     		b	.L2
-  43              	.L6:
-   6:Core/Src/main.c ****     while(1){
-   7:Core/Src/main.c ****         if (GPIOC_READ != 0){
-   8:Core/Src/main.c ****             *(uint32_t *)(0x40020400 + 0x18) |= 0x80; // включение светодиода
-  44              		.loc 1 8 13 view .LVU2
-  45 0008 0A4A     		ldr	r2, .L7
-  46 000a D2F81834 		ldr	r3, [r2, #1048]
-  47              		.loc 1 8 46 is_stmt 0 view .LVU3
-  48 000e 43F08003 		orr	r3, r3, #128
-  49 0012 C2F81834 		str	r3, [r2, #1048]
-  50              	.L2:
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\cceCtLvx.s 			page 2
+  42              	.L2:
+   7:Core/Src/main.c **** 
+   8:Core/Src/main.c ****     while(1){
+  43              		.loc 1 8 5 view .LVU2
+   9:Core/Src/main.c ****         GPIO |= GPIOEN0;
+  44              		.loc 1 9 9 view .LVU3
+  45 0006 104A     		ldr	r2, .L4
+  46 0008 D2F81834 		ldr	r3, [r2, #1048]
+  47              		.loc 1 9 14 is_stmt 0 view .LVU4
+  48 000c 43F00101 		orr	r1, r3, #1
+  49 0010 C2F81814 		str	r1, [r2, #1048]
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccB5ODa8.s 			page 2
 
 
-   6:Core/Src/main.c ****     while(1){
-  51              		.loc 1 6 5 is_stmt 1 view .LVU4
-   7:Core/Src/main.c ****             *(uint32_t *)(0x40020400 + 0x18) |= 0x80; // включение светодиода
-  52              		.loc 1 7 9 view .LVU5
-   7:Core/Src/main.c ****             *(uint32_t *)(0x40020400 + 0x18) |= 0x80; // включение светодиода
-  53              		.loc 1 7 13 is_stmt 0 view .LVU6
-  54 0016 074B     		ldr	r3, .L7
-  55 0018 D3F81038 		ldr	r3, [r3, #2064]
-   7:Core/Src/main.c ****             *(uint32_t *)(0x40020400 + 0x18) |= 0x80; // включение светодиода
-  56              		.loc 1 7 12 view .LVU7
-  57 001c 13F4005F 		tst	r3, #8192
-  58 0020 F2D1     		bne	.L6
-   9:Core/Src/main.c **** 
-  10:Core/Src/main.c ****         }
-  11:Core/Src/main.c ****         else{
-  12:Core/Src/main.c ****             *(uint32_t *)(0x40020400 + 0x18) |= 0x80; // bit reset
-  59              		.loc 1 12 13 is_stmt 1 view .LVU8
-  60 0022 044A     		ldr	r2, .L7
-  61 0024 D2F81834 		ldr	r3, [r2, #1048]
-  62              		.loc 1 12 46 is_stmt 0 view .LVU9
-  63 0028 43F08003 		orr	r3, r3, #128
-  64 002c C2F81834 		str	r3, [r2, #1048]
-  65 0030 F1E7     		b	.L2
-  66              	.L8:
-  67 0032 00BF     		.align	2
-  68              	.L7:
-  69 0034 00000240 		.word	1073872896
-  70              		.cfi_endproc
-  71              	.LFE0:
-  73              		.text
-  74              	.Letext0:
-  75              		.file 2 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_ty
-  76              		.file 3 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
-  77              		.file 4 "Core/Inc/init.h"
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\cceCtLvx.s 			page 3
+  10:Core/Src/main.c ****         GPIO |= GPIOEN1;
+  50              		.loc 1 10 9 is_stmt 1 view .LVU5
+  51              		.loc 1 10 14 is_stmt 0 view .LVU6
+  52 0014 43F00301 		orr	r1, r3, #3
+  53 0018 C2F81814 		str	r1, [r2, #1048]
+  11:Core/Src/main.c ****         GPIO |= GPIOEN2; // включение светодиода B2
+  54              		.loc 1 11 9 is_stmt 1 view .LVU7
+  55              		.loc 1 11 14 is_stmt 0 view .LVU8
+  56 001c 43F00701 		orr	r1, r3, #7
+  57 0020 C2F81814 		str	r1, [r2, #1048]
+  12:Core/Src/main.c ****         GPIO |= GPIOEN3;
+  58              		.loc 1 12 9 is_stmt 1 view .LVU9
+  59              		.loc 1 12 14 is_stmt 0 view .LVU10
+  60 0024 43F04701 		orr	r1, r3, #71
+  61 0028 C2F81814 		str	r1, [r2, #1048]
+  13:Core/Src/main.c ****         GPIO |= GPIOEN4;
+  62              		.loc 1 13 9 is_stmt 1 view .LVU11
+  63              		.loc 1 13 14 is_stmt 0 view .LVU12
+  64 002c 43F4A371 		orr	r1, r3, #326
+  65 0030 41F00101 		orr	r1, r1, #1
+  66 0034 C2F81814 		str	r1, [r2, #1048]
+  14:Core/Src/main.c ****         GPIO |= GPIOEN5;
+  67              		.loc 1 14 9 is_stmt 1 discriminator 1 view .LVU13
+  68              		.loc 1 14 14 is_stmt 0 discriminator 1 view .LVU14
+  69 0038 43F45173 		orr	r3, r3, #836
+  70 003c 43F00303 		orr	r3, r3, #3
+  71 0040 C2F81834 		str	r3, [r2, #1048]
+   8:Core/Src/main.c ****         GPIO |= GPIOEN1;
+  72              		.loc 1 8 10 is_stmt 1 view .LVU15
+  73 0044 DFE7     		b	.L2
+  74              	.L5:
+  75 0046 00BF     		.align	2
+  76              	.L4:
+  77 0048 00000240 		.word	1073872896
+  78              		.cfi_endproc
+  79              	.LFE0:
+  81              		.text
+  82              	.Letext0:
+  83              		.file 2 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_ty
+  84              		.file 3 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
+  85              		.file 4 "Core/Inc/init.h"
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccB5ODa8.s 			page 3
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\kovav\AppData\Local\Temp\cceCtLvx.s:21     .text.main:00000000 $t
-C:\Users\kovav\AppData\Local\Temp\cceCtLvx.s:27     .text.main:00000000 main
-C:\Users\kovav\AppData\Local\Temp\cceCtLvx.s:69     .text.main:00000034 $d
+C:\Users\kovav\AppData\Local\Temp\ccB5ODa8.s:21     .text.main:00000000 $t
+C:\Users\kovav\AppData\Local\Temp\ccB5ODa8.s:27     .text.main:00000000 main
+C:\Users\kovav\AppData\Local\Temp\ccB5ODa8.s:77     .text.main:00000048 $d
 
 UNDEFINED SYMBOLS
 GPIO_Init

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s 			page 1
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccBPRQzT.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -36,53 +36,112 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s 			page 1
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
-   4:Core/Src/init.c ****     RCC_GPIO_EN |= 0x02;  //ТАКТИРОВАНИЕ порта В и С
-  34              		.loc 1 4 5 view .LVU1
-  35 0000 0A4A     		ldr	r2, .L2
+   4:Core/Src/init.c **** RCC_GPIO_EN;
+  34              		.loc 1 4 1 view .LVU1
+  35 0000 1E4A     		ldr	r2, .L2
   36 0002 D2F83038 		ldr	r3, [r2, #2096]
-  37              		.loc 1 4 17 is_stmt 0 view .LVU2
-  38 0006 43F00203 		orr	r3, r3, #2
-  39 000a C2F83038 		str	r3, [r2, #2096]
-   5:Core/Src/init.c ****     GPIOB_MODER |= 0x4000; // ПИН ПБ7 на выход
-  40              		.loc 1 5 5 is_stmt 1 view .LVU3
-  41 000e 084B     		ldr	r3, .L2+4
-  42 0010 D3F80024 		ldr	r2, [r3, #1024]
-  43              		.loc 1 5 17 is_stmt 0 view .LVU4
-  44 0014 42F48042 		orr	r2, r2, #16384
-  45 0018 C3F80024 		str	r2, [r3, #1024]
-   6:Core/Src/init.c ****     GPIOB_OSPEED |= 0x4000; // задана средняя скорость работы пина
-  46              		.loc 1 6 5 is_stmt 1 view .LVU5
-  47 001c D3F80824 		ldr	r2, [r3, #1032]
-  48              		.loc 1 6 18 is_stmt 0 view .LVU6
-  49 0020 42F48042 		orr	r2, r2, #16384
-  50 0024 C3F80824 		str	r2, [r3, #1032]
-   7:Core/Src/init.c ****     *(uint32_t *)(0x40020400 + 0x0C) |= 0x00; // нет подтяжки/стяжки
-  51              		.loc 1 7 5 is_stmt 1 view .LVU7
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s 			page 2
+  37 0006 43F00203 		orr	r3, r3, #2
+  38 000a C2F83038 		str	r3, [r2, #2096]
+   5:Core/Src/init.c **** GPIOB_PPUP;
+  39              		.loc 1 5 1 view .LVU2
+  40              		.loc 1 5 11 view .LVU3
+   6:Core/Src/init.c **** 
+   7:Core/Src/init.c **** GPIOB_MODER |= GPIO_SET0;
+  41              		.loc 1 7 1 view .LVU4
+  42 000e 1C4B     		ldr	r3, .L2+4
+  43 0010 D3F80014 		ldr	r1, [r3, #1024]
+  44              		.loc 1 7 13 is_stmt 0 view .LVU5
+  45 0014 41F00102 		orr	r2, r1, #1
+  46 0018 C3F80024 		str	r2, [r3, #1024]
+   8:Core/Src/init.c **** GPIOB_OSPEED |= GPIO_SET0;
+  47              		.loc 1 8 1 is_stmt 1 view .LVU6
+  48 001c D3F80824 		ldr	r2, [r3, #1032]
+  49              		.loc 1 8 14 is_stmt 0 view .LVU7
+  50 0020 42F00100 		orr	r0, r2, #1
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccBPRQzT.s 			page 2
 
 
-   8:Core/Src/init.c **** 
-   9:Core/Src/init.c **** }...
-  52              		.loc 1 9 1 is_stmt 0 view .LVU8
-  53 0028 7047     		bx	lr
-  54              	.L3:
-  55 002a 00BF     		.align	2
-  56              	.L2:
-  57 002c 00300240 		.word	1073885184
-  58 0030 00000240 		.word	1073872896
-  59              		.cfi_endproc
-  60              	.LFE0:
-  62              		.text
-  63              	.Letext0:
-  64              		.file 2 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_ty
-  65              		.file 3 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s 			page 3
+  51 0024 C3F80804 		str	r0, [r3, #1032]
+   9:Core/Src/init.c **** 
+  10:Core/Src/init.c **** GPIOB_MODER |= GPIO_SET1;
+  52              		.loc 1 10 1 is_stmt 1 view .LVU8
+  53              		.loc 1 10 13 is_stmt 0 view .LVU9
+  54 0028 41F00500 		orr	r0, r1, #5
+  55 002c C3F80004 		str	r0, [r3, #1024]
+  11:Core/Src/init.c **** GPIOB_OSPEED |= GPIO_SET1;
+  56              		.loc 1 11 1 is_stmt 1 view .LVU10
+  57              		.loc 1 11 14 is_stmt 0 view .LVU11
+  58 0030 42F00500 		orr	r0, r2, #5
+  59 0034 C3F80804 		str	r0, [r3, #1032]
+  12:Core/Src/init.c **** 
+  13:Core/Src/init.c **** GPIOB_MODER |= GPIO_SET2;
+  60              		.loc 1 13 1 is_stmt 1 view .LVU12
+  61              		.loc 1 13 13 is_stmt 0 view .LVU13
+  62 0038 41F01501 		orr	r1, r1, #21
+  63 003c C3F80014 		str	r1, [r3, #1024]
+  14:Core/Src/init.c **** GPIOB_OSPEED |= GPIO_SET2;
+  64              		.loc 1 14 1 is_stmt 1 view .LVU14
+  65              		.loc 1 14 14 is_stmt 0 view .LVU15
+  66 0040 42F01502 		orr	r2, r2, #21
+  67 0044 C3F80824 		str	r2, [r3, #1032]
+  15:Core/Src/init.c **** 
+  16:Core/Src/init.c **** GPIOB_MODER |= GPIO_SET3;
+  68              		.loc 1 16 1 is_stmt 1 view .LVU16
+  69              		.loc 1 16 13 is_stmt 0 view .LVU17
+  70 0048 41F48050 		orr	r0, r1, #4096
+  71 004c C3F80004 		str	r0, [r3, #1024]
+  17:Core/Src/init.c **** GPIOB_OSPEED |= GPIO_SET3;
+  72              		.loc 1 17 1 is_stmt 1 view .LVU18
+  73              		.loc 1 17 14 is_stmt 0 view .LVU19
+  74 0050 42F48050 		orr	r0, r2, #4096
+  75 0054 C3F80804 		str	r0, [r3, #1032]
+  18:Core/Src/init.c **** 
+  19:Core/Src/init.c **** GPIOB_MODER |= GPIO_SET4;
+  76              		.loc 1 19 1 is_stmt 1 view .LVU20
+  77              		.loc 1 19 13 is_stmt 0 view .LVU21
+  78 0058 41F48830 		orr	r0, r1, #69632
+  79 005c C3F80004 		str	r0, [r3, #1024]
+  20:Core/Src/init.c **** GPIOB_OSPEED |= GPIO_SET4;
+  80              		.loc 1 20 1 is_stmt 1 view .LVU22
+  81              		.loc 1 20 14 is_stmt 0 view .LVU23
+  82 0060 42F48830 		orr	r0, r2, #69632
+  83 0064 C3F80804 		str	r0, [r3, #1032]
+  21:Core/Src/init.c **** 
+  22:Core/Src/init.c **** GPIOB_MODER |= GPIO_SET5;
+  84              		.loc 1 22 1 is_stmt 1 view .LVU24
+  85              		.loc 1 22 13 is_stmt 0 view .LVU25
+  86 0068 41F4A221 		orr	r1, r1, #331776
+  87 006c C3F80014 		str	r1, [r3, #1024]
+  23:Core/Src/init.c **** GPIOB_OSPEED |= GPIO_SET5;
+  88              		.loc 1 23 1 is_stmt 1 view .LVU26
+  89              		.loc 1 23 14 is_stmt 0 view .LVU27
+  90 0070 42F4A222 		orr	r2, r2, #331776
+  91 0074 C3F80824 		str	r2, [r3, #1032]
+  24:Core/Src/init.c **** 
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccBPRQzT.s 			page 3
+
+
+  25:Core/Src/init.c **** }...
+  92              		.loc 1 25 1 view .LVU28
+  93 0078 7047     		bx	lr
+  94              	.L3:
+  95 007a 00BF     		.align	2
+  96              	.L2:
+  97 007c 00300240 		.word	1073885184
+  98 0080 00000240 		.word	1073872896
+  99              		.cfi_endproc
+ 100              	.LFE0:
+ 102              		.text
+ 103              	.Letext0:
+ 104              		.file 2 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_ty
+ 105              		.file 3 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccBPRQzT.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 init.c
-C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s:21     .text.GPIO_Init:00000000 $t
-C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s:27     .text.GPIO_Init:00000000 GPIO_Init
-C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s:57     .text.GPIO_Init:0000002c $d
+C:\Users\kovav\AppData\Local\Temp\ccBPRQzT.s:21     .text.GPIO_Init:00000000 $t
+C:\Users\kovav\AppData\Local\Temp\ccBPRQzT.s:27     .text.GPIO_Init:00000000 GPIO_Init
+C:\Users\kovav\AppData\Local\Temp\ccBPRQzT.s:97     .text.GPIO_Init:0000007c $d
 
 NO UNDEFINED SYMBOLS
