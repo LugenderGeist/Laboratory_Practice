@@ -1,0 +1,88 @@
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"init.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/init.c"
+  20              		.section	.text.GPIO_Init,"ax",%progbits
+  21              		.align	1
+  22              		.global	GPIO_Init
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	GPIO_Init:
+  28              	.LFB0:
+   1:Core/Src/init.c **** #include "init.h"
+   2:Core/Src/init.c **** 
+   3:Core/Src/init.c **** void GPIO_Init (void){
+  29              		.loc 1 3 22 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+   4:Core/Src/init.c ****     RCC_GPIO_EN |= 0x02;  //ТАКТИРОВАНИЕ порта В и С
+  34              		.loc 1 4 5 view .LVU1
+  35 0000 0A4A     		ldr	r2, .L2
+  36 0002 D2F83038 		ldr	r3, [r2, #2096]
+  37              		.loc 1 4 17 is_stmt 0 view .LVU2
+  38 0006 43F00203 		orr	r3, r3, #2
+  39 000a C2F83038 		str	r3, [r2, #2096]
+   5:Core/Src/init.c ****     GPIOB_MODER |= 0x4000; // ПИН ПБ7 на выход
+  40              		.loc 1 5 5 is_stmt 1 view .LVU3
+  41 000e 084B     		ldr	r3, .L2+4
+  42 0010 D3F80024 		ldr	r2, [r3, #1024]
+  43              		.loc 1 5 17 is_stmt 0 view .LVU4
+  44 0014 42F48042 		orr	r2, r2, #16384
+  45 0018 C3F80024 		str	r2, [r3, #1024]
+   6:Core/Src/init.c ****     GPIOB_OSPEED |= 0x4000; // задана средняя скорость работы пина
+  46              		.loc 1 6 5 is_stmt 1 view .LVU5
+  47 001c D3F80824 		ldr	r2, [r3, #1032]
+  48              		.loc 1 6 18 is_stmt 0 view .LVU6
+  49 0020 42F48042 		orr	r2, r2, #16384
+  50 0024 C3F80824 		str	r2, [r3, #1032]
+   7:Core/Src/init.c ****     *(uint32_t *)(0x40020400 + 0x0C) |= 0x00; // нет подтяжки/стяжки
+  51              		.loc 1 7 5 is_stmt 1 view .LVU7
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s 			page 2
+
+
+   8:Core/Src/init.c **** 
+   9:Core/Src/init.c **** }...
+  52              		.loc 1 9 1 is_stmt 0 view .LVU8
+  53 0028 7047     		bx	lr
+  54              	.L3:
+  55 002a 00BF     		.align	2
+  56              	.L2:
+  57 002c 00300240 		.word	1073885184
+  58 0030 00000240 		.word	1073872896
+  59              		.cfi_endproc
+  60              	.LFE0:
+  62              		.text
+  63              	.Letext0:
+  64              		.file 2 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_ty
+  65              		.file 3 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 init.c
+C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s:21     .text.GPIO_Init:00000000 $t
+C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s:27     .text.GPIO_Init:00000000 GPIO_Init
+C:\Users\kovav\AppData\Local\Temp\ccreH0ag.s:57     .text.GPIO_Init:0000002c $d
+
+NO UNDEFINED SYMBOLS
