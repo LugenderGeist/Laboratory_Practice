@@ -45,7 +45,7 @@
   */
 
 
-#include "stm32f429xx.h"
+#include "C:\Users\kovav\Laboratory_Practice\Laboratory_Practice\CMSIS\Devices\STM32F4xx\Inc\STM32F429xx\stm32f429xx.h"
 
 #if !defined  (HSE_VALUE) 
   #define HSE_VALUE    ((uint32_t)25000000) /*!< Default value of the External oscillator in Hz */
