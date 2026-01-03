@@ -14,7 +14,7 @@ int main(void) {
 
     GPIO_Init();
     off_all_led();
-    GPIO |= GPIO_SET0;
+    *(uint32_t *)(0x40021400 + 0x18) |= 0x01; //включение первого светодиода
 
     while (1) {
         // Считывание первой кнопки
