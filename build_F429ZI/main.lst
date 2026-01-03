@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\cckqHPyk.s 			page 1
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -29,218 +29,570 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\cckqHPyk.s 			page 1
   27              	main:
   28              	.LFB0:
    1:Core/Src/main.c **** #include <init.h>
-   2:Core/Src/main.c **** int B;
-   3:Core/Src/main.c **** 
-   4:Core/Src/main.c **** int main(void)
-   5:Core/Src/main.c **** {
-  29              		.loc 1 5 1 view -0
-  30              		.cfi_startproc
-  31              		@ Volatile: function does not return.
-  32              		@ args = 0, pretend = 0, frame = 0
-  33              		@ frame_needed = 0, uses_anonymous_args = 0
-  34 0000 08B5     		push	{r3, lr}
-  35              	.LCFI0:
-  36              		.cfi_def_cfa_offset 8
-  37              		.cfi_offset 3, -8
-  38              		.cfi_offset 14, -4
+   2:Core/Src/main.c **** int B1;
+   3:Core/Src/main.c **** int B1_prev;
+   4:Core/Src/main.c **** int B2;
+   5:Core/Src/main.c **** int B2_prev;
    6:Core/Src/main.c **** 
-   7:Core/Src/main.c **** GPIO_Init();
-  39              		.loc 1 7 1 view .LVU1
-  40 0002 FFF7FEFF 		bl	GPIO_Init
-  41              	.LVL0:
-  42 0006 0DE0     		b	.L5
-  43              	.L8:
-   8:Core/Src/main.c **** 
-   9:Core/Src/main.c ****     while(1){
-  10:Core/Src/main.c ****         
-  11:Core/Src/main.c ****         
-  12:Core/Src/main.c ****         if ((GPIO_READ1 == 0)) 
-  13:Core/Src/main.c ****         { 
-  14:Core/Src/main.c ****         GPIO |= GPIOEN0;
-  15:Core/Src/main.c ****         GPIO |= GPIOOFF1;
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\cckqHPyk.s 			page 2
+   7:Core/Src/main.c **** int count_B1 = 1; // число светодиодов, горящих одновременно
+   8:Core/Src/main.c **** int LED_group = 0; //позиция группы светодиодов
+   9:Core/Src/main.c **** int LED_index; // индекс текущего светодиода
+  10:Core/Src/main.c **** const int LED_num = 6; // всего светодиодов
+  11:Core/Src/main.c **** 
+  12:Core/Src/main.c **** 
+  13:Core/Src/main.c **** int main(void)
+  14:Core/Src/main.c **** {
+  29              		.loc 1 14 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 10B5     		push	{r4, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
+  15:Core/Src/main.c **** 
+  16:Core/Src/main.c **** GPIO_Init();
+  38              		.loc 1 16 1 view .LVU1
+  39 0002 FFF7FEFF 		bl	GPIO_Init
+  40              	.LVL0:
+  17:Core/Src/main.c **** 
+  18:Core/Src/main.c ****     // В начале выключаем все светодиоды
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s 			page 2
 
 
-  16:Core/Src/main.c ****         B = 0;
-  17:Core/Src/main.c ****         }
-  18:Core/Src/main.c ****         if ((GPIO_READ1 != 0)) 
-  19:Core/Src/main.c ****         {
-  20:Core/Src/main.c ****         GPIO |= GPIOOFF0;
-  21:Core/Src/main.c ****         GPIO |= GPIOEN1;
-  22:Core/Src/main.c ****         B = 1;
-  23:Core/Src/main.c ****         }
-  24:Core/Src/main.c ****         if ((GPIO_READ2 == 0)) 
-  25:Core/Src/main.c ****         { 
-  26:Core/Src/main.c ****         GPIO |= GPIOEN2;
-  27:Core/Src/main.c ****         GPIO |= GPIOOFF3;
-  28:Core/Src/main.c ****         B = 0;
-  29:Core/Src/main.c ****         }
-  30:Core/Src/main.c ****         if ((GPIO_READ2 != 0)) 
-  31:Core/Src/main.c ****         {
-  32:Core/Src/main.c ****         GPIO |= GPIOOFF2;
-  44              		.loc 1 32 9 view .LVU2
-  45 0008 2A4A     		ldr	r2, .L9
-  46 000a D2F81834 		ldr	r3, [r2, #1048]
-  47              		.loc 1 32 14 is_stmt 0 view .LVU3
-  48 000e 43F48023 		orr	r3, r3, #262144
-  49 0012 C2F81834 		str	r3, [r2, #1048]
-  33:Core/Src/main.c ****         GPIO |= GPIOEN3;
-  50              		.loc 1 33 9 is_stmt 1 view .LVU4
-  51              		.loc 1 33 14 is_stmt 0 view .LVU5
-  52 0016 43F00803 		orr	r3, r3, #8
-  53 001a C2F81834 		str	r3, [r2, #1048]
-  34:Core/Src/main.c ****         B = 1;
-  54              		.loc 1 34 9 is_stmt 1 view .LVU6
-  55              		.loc 1 34 11 is_stmt 0 view .LVU7
-  56 001e 264B     		ldr	r3, .L9+4
-  57 0020 0122     		movs	r2, #1
-  58 0022 1A60     		str	r2, [r3]
-  59              	.L5:
-   9:Core/Src/main.c ****         
-  60              		.loc 1 9 5 is_stmt 1 view .LVU8
-  12:Core/Src/main.c ****         { 
-  61              		.loc 1 12 9 view .LVU9
-  12:Core/Src/main.c ****         { 
-  62              		.loc 1 12 14 is_stmt 0 view .LVU10
-  63 0024 254B     		ldr	r3, .L9+8
-  64 0026 D3F81034 		ldr	r3, [r3, #1040]
-  12:Core/Src/main.c ****         { 
-  65              		.loc 1 12 12 view .LVU11
-  66 002a 13F4806F 		tst	r3, #1024
-  67 002e 0FD1     		bne	.L2
-  14:Core/Src/main.c ****         GPIO |= GPIOOFF1;
-  68              		.loc 1 14 9 is_stmt 1 view .LVU12
-  69 0030 204A     		ldr	r2, .L9
-  70 0032 D2F81834 		ldr	r3, [r2, #1048]
-  14:Core/Src/main.c ****         GPIO |= GPIOOFF1;
-  71              		.loc 1 14 14 is_stmt 0 view .LVU13
-  72 0036 43F00101 		orr	r1, r3, #1
-  73 003a C2F81814 		str	r1, [r2, #1048]
-  15:Core/Src/main.c ****         B = 0;
-  74              		.loc 1 15 9 is_stmt 1 view .LVU14
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\cckqHPyk.s 			page 3
+  19:Core/Src/main.c ****     GPIO |= 0x10000;   // Выкл LED0
+  41              		.loc 1 19 5 view .LVU2
+  42 0006 6D4A     		ldr	r2, .L17
+  43 0008 D2F81834 		ldr	r3, [r2, #1048]
+  44              		.loc 1 19 10 is_stmt 0 view .LVU3
+  45 000c 43F48031 		orr	r1, r3, #65536
+  46 0010 C2F81814 		str	r1, [r2, #1048]
+  20:Core/Src/main.c ****     GPIO |= 0x20000;   // Выкл LED1
+  47              		.loc 1 20 5 is_stmt 1 view .LVU4
+  48              		.loc 1 20 10 is_stmt 0 view .LVU5
+  49 0014 43F44031 		orr	r1, r3, #196608
+  50 0018 C2F81814 		str	r1, [r2, #1048]
+  21:Core/Src/main.c ****     GPIO |= 0x40000;   // Выкл LED2
+  51              		.loc 1 21 5 is_stmt 1 view .LVU6
+  52              		.loc 1 21 10 is_stmt 0 view .LVU7
+  53 001c 43F4E021 		orr	r1, r3, #458752
+  54 0020 C2F81814 		str	r1, [r2, #1048]
+  22:Core/Src/main.c ****     GPIO |= 0x80000;   // Выкл LED3
+  55              		.loc 1 22 5 is_stmt 1 view .LVU8
+  56              		.loc 1 22 10 is_stmt 0 view .LVU9
+  57 0024 43F47021 		orr	r1, r3, #983040
+  58 0028 C2F81814 		str	r1, [r2, #1048]
+  23:Core/Src/main.c ****     GPIO |= 0x100000;  // Выкл LED4
+  59              		.loc 1 23 5 is_stmt 1 view .LVU10
+  60              		.loc 1 23 10 is_stmt 0 view .LVU11
+  61 002c 43F4F811 		orr	r1, r3, #2031616
+  62 0030 C2F81814 		str	r1, [r2, #1048]
+  24:Core/Src/main.c ****     GPIO |= 0x200000;  // Выкл LED5
+  63              		.loc 1 24 5 is_stmt 1 view .LVU12
+  64              		.loc 1 24 10 is_stmt 0 view .LVU13
+  65 0034 43F47C13 		orr	r3, r3, #4128768
+  66 0038 C2F81834 		str	r3, [r2, #1048]
+  25:Core/Src/main.c ****     
+  26:Core/Src/main.c ****     // И включаем начальное количество (1 светодиод)
+  27:Core/Src/main.c ****     GPIO |= 0x01;      // Вкл LED0
+  67              		.loc 1 27 5 is_stmt 1 view .LVU14
+  68              		.loc 1 27 10 is_stmt 0 view .LVU15
+  69 003c 43F00103 		orr	r3, r3, #1
+  70 0040 C2F81834 		str	r3, [r2, #1048]
+  71 0044 5DE0     		b	.L14
+  72              	.L16:
+  28:Core/Src/main.c **** 
+  29:Core/Src/main.c ****     while(1){
+  30:Core/Src/main.c ****         
+  31:Core/Src/main.c ****         // Считывание первой кнопки
+  32:Core/Src/main.c ****         if ((GPIO_READ1 == 0)) { B1 = 0;}
+  33:Core/Src/main.c ****         if ((GPIO_READ1 != 0)) { B1 = 1;}   
+  34:Core/Src/main.c ****         if (B1_prev == 0 && B1 == 1) {
+  35:Core/Src/main.c ****             
+  36:Core/Src/main.c ****             count_B1++; // count_B1 по сути число светодиодов, которые
+  73              		.loc 1 36 13 is_stmt 1 view .LVU16
+  74              		.loc 1 36 21 is_stmt 0 view .LVU17
+  75 0046 5E49     		ldr	r1, .L17+4
+  76 0048 0A68     		ldr	r2, [r1]
+  77 004a 0132     		adds	r2, r2, #1
+  78 004c 0A60     		str	r2, [r1]
+  37:Core/Src/main.c ****             if (count_B1 > LED_num) {count_B1 = 1;} 
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s 			page 3
 
 
-  15:Core/Src/main.c ****         B = 0;
-  75              		.loc 1 15 14 is_stmt 0 view .LVU15
-  76 003e 43F40033 		orr	r3, r3, #131072
-  77 0042 43F00103 		orr	r3, r3, #1
-  78 0046 C2F81834 		str	r3, [r2, #1048]
-  16:Core/Src/main.c ****         }
-  79              		.loc 1 16 9 is_stmt 1 view .LVU16
-  16:Core/Src/main.c ****         }
-  80              		.loc 1 16 11 is_stmt 0 view .LVU17
-  81 004a 1B4B     		ldr	r3, .L9+4
-  82 004c 0022     		movs	r2, #0
-  83 004e 1A60     		str	r2, [r3]
-  84              	.L2:
-  18:Core/Src/main.c ****         {
-  85              		.loc 1 18 9 is_stmt 1 view .LVU18
-  18:Core/Src/main.c ****         {
-  86              		.loc 1 18 14 is_stmt 0 view .LVU19
-  87 0050 1A4B     		ldr	r3, .L9+8
-  88 0052 D3F81034 		ldr	r3, [r3, #1040]
-  18:Core/Src/main.c ****         {
-  89              		.loc 1 18 12 view .LVU20
-  90 0056 13F4806F 		tst	r3, #1024
-  91 005a 0DD0     		beq	.L3
-  20:Core/Src/main.c ****         GPIO |= GPIOEN1;
-  92              		.loc 1 20 9 is_stmt 1 view .LVU21
-  93 005c 154A     		ldr	r2, .L9
-  94 005e D2F81834 		ldr	r3, [r2, #1048]
-  20:Core/Src/main.c ****         GPIO |= GPIOEN1;
-  95              		.loc 1 20 14 is_stmt 0 view .LVU22
-  96 0062 43F48033 		orr	r3, r3, #65536
-  97 0066 C2F81834 		str	r3, [r2, #1048]
-  21:Core/Src/main.c ****         B = 1;
-  98              		.loc 1 21 9 is_stmt 1 view .LVU23
-  21:Core/Src/main.c ****         B = 1;
-  99              		.loc 1 21 14 is_stmt 0 view .LVU24
- 100 006a 43F00203 		orr	r3, r3, #2
- 101 006e C2F81834 		str	r3, [r2, #1048]
-  22:Core/Src/main.c ****         }
- 102              		.loc 1 22 9 is_stmt 1 view .LVU25
-  22:Core/Src/main.c ****         }
- 103              		.loc 1 22 11 is_stmt 0 view .LVU26
- 104 0072 114B     		ldr	r3, .L9+4
- 105 0074 0122     		movs	r2, #1
- 106 0076 1A60     		str	r2, [r3]
- 107              	.L3:
-  24:Core/Src/main.c ****         { 
- 108              		.loc 1 24 9 is_stmt 1 view .LVU27
-  24:Core/Src/main.c ****         { 
- 109              		.loc 1 24 14 is_stmt 0 view .LVU28
- 110 0078 104B     		ldr	r3, .L9+8
- 111 007a D3F81034 		ldr	r3, [r3, #1040]
-  24:Core/Src/main.c ****         { 
- 112              		.loc 1 24 12 view .LVU29
- 113 007e 13F4006F 		tst	r3, #2048
- 114 0082 0FD1     		bne	.L4
-  26:Core/Src/main.c ****         GPIO |= GPIOOFF3;
- 115              		.loc 1 26 9 is_stmt 1 view .LVU30
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\cckqHPyk.s 			page 4
+  79              		.loc 1 37 13 is_stmt 1 view .LVU18
+  80              		.loc 1 37 16 is_stmt 0 view .LVU19
+  81 004e 062A     		cmp	r2, #6
+  82 0050 02DD     		ble	.L5
+  83              		.loc 1 37 38 is_stmt 1 discriminator 1 view .LVU20
+  84              		.loc 1 37 47 is_stmt 0 discriminator 1 view .LVU21
+  85 0052 0A46     		mov	r2, r1
+  86 0054 0121     		movs	r1, #1
+  87 0056 1160     		str	r1, [r2]
+  88              	.L5:
+  38:Core/Src/main.c ****             LED_group = 0;
+  89              		.loc 1 38 13 is_stmt 1 view .LVU22
+  90              		.loc 1 38 23 is_stmt 0 view .LVU23
+  91 0058 5A4A     		ldr	r2, .L17+8
+  92 005a 0021     		movs	r1, #0
+  93 005c 1160     		str	r1, [r2]
+  39:Core/Src/main.c ****         
+  40:Core/Src/main.c ****             GPIO |= 0x10000;   // Выкл LED0
+  94              		.loc 1 40 13 is_stmt 1 view .LVU24
+  95 005e 01F18041 		add	r1, r1, #1073741824
+  96 0062 01F50431 		add	r1, r1, #135168
+  97 0066 D1F81824 		ldr	r2, [r1, #1048]
+  98              		.loc 1 40 18 is_stmt 0 view .LVU25
+  99 006a 42F48030 		orr	r0, r2, #65536
+ 100 006e C1F81804 		str	r0, [r1, #1048]
+  41:Core/Src/main.c ****             GPIO |= 0x20000;   // Выкл LED1
+ 101              		.loc 1 41 13 is_stmt 1 view .LVU26
+ 102              		.loc 1 41 18 is_stmt 0 view .LVU27
+ 103 0072 42F44030 		orr	r0, r2, #196608
+ 104 0076 C1F81804 		str	r0, [r1, #1048]
+  42:Core/Src/main.c ****             GPIO |= 0x40000;   // Выкл LED2
+ 105              		.loc 1 42 13 is_stmt 1 view .LVU28
+ 106              		.loc 1 42 18 is_stmt 0 view .LVU29
+ 107 007a 42F4E020 		orr	r0, r2, #458752
+ 108 007e C1F81804 		str	r0, [r1, #1048]
+  43:Core/Src/main.c ****             GPIO |= 0x80000;   // Выкл LED3
+ 109              		.loc 1 43 13 is_stmt 1 view .LVU30
+ 110              		.loc 1 43 18 is_stmt 0 view .LVU31
+ 111 0082 42F47020 		orr	r0, r2, #983040
+ 112 0086 C1F81804 		str	r0, [r1, #1048]
+  44:Core/Src/main.c ****             GPIO |= 0x100000;  // Выкл LED4
+ 113              		.loc 1 44 13 is_stmt 1 view .LVU32
+ 114              		.loc 1 44 18 is_stmt 0 view .LVU33
+ 115 008a 42F4F810 		orr	r0, r2, #2031616
+ 116 008e C1F81804 		str	r0, [r1, #1048]
+  45:Core/Src/main.c ****             GPIO |= 0x200000;  // Выкл LED5
+ 117              		.loc 1 45 13 is_stmt 1 view .LVU34
+ 118              		.loc 1 45 18 is_stmt 0 view .LVU35
+ 119 0092 42F47C12 		orr	r2, r2, #4128768
+ 120 0096 C1F81824 		str	r2, [r1, #1048]
+  46:Core/Src/main.c **** 
+  47:Core/Src/main.c ****             for (int i = 0; i < count_B1; i++)
+ 121              		.loc 1 47 13 is_stmt 1 view .LVU36
+ 122              	.LBB2:
+ 123              		.loc 1 47 18 view .LVU37
+ 124              	.LVL1:
+ 125              		.loc 1 47 13 is_stmt 0 view .LVU38
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s 			page 4
 
 
- 116 0084 0B4A     		ldr	r2, .L9
- 117 0086 D2F81834 		ldr	r3, [r2, #1048]
-  26:Core/Src/main.c ****         GPIO |= GPIOOFF3;
- 118              		.loc 1 26 14 is_stmt 0 view .LVU31
- 119 008a 43F00401 		orr	r1, r3, #4
- 120 008e C2F81814 		str	r1, [r2, #1048]
-  27:Core/Src/main.c ****         B = 0;
- 121              		.loc 1 27 9 is_stmt 1 view .LVU32
-  27:Core/Src/main.c ****         B = 0;
- 122              		.loc 1 27 14 is_stmt 0 view .LVU33
- 123 0092 43F40023 		orr	r3, r3, #524288
- 124 0096 43F00403 		orr	r3, r3, #4
- 125 009a C2F81834 		str	r3, [r2, #1048]
-  28:Core/Src/main.c ****         }
- 126              		.loc 1 28 9 is_stmt 1 view .LVU34
-  28:Core/Src/main.c ****         }
- 127              		.loc 1 28 11 is_stmt 0 view .LVU35
- 128 009e 064B     		ldr	r3, .L9+4
- 129 00a0 0022     		movs	r2, #0
- 130 00a2 1A60     		str	r2, [r3]
- 131              	.L4:
-  30:Core/Src/main.c ****         {
- 132              		.loc 1 30 9 is_stmt 1 view .LVU36
-  30:Core/Src/main.c ****         {
- 133              		.loc 1 30 14 is_stmt 0 view .LVU37
- 134 00a4 054B     		ldr	r3, .L9+8
- 135 00a6 D3F81034 		ldr	r3, [r3, #1040]
-  30:Core/Src/main.c ****         {
- 136              		.loc 1 30 12 view .LVU38
- 137 00aa 13F4006F 		tst	r3, #2048
- 138 00ae B9D0     		beq	.L5
- 139 00b0 AAE7     		b	.L8
- 140              	.L10:
- 141 00b2 00BF     		.align	2
- 142              	.L9:
- 143 00b4 00100240 		.word	1073876992
- 144 00b8 00000000 		.word	B
- 145 00bc 00000240 		.word	1073872896
- 146              		.cfi_endproc
- 147              	.LFE0:
- 149              		.global	B
- 150              		.section	.bss.B,"aw",%nobits
- 151              		.align	2
- 154              	B:
- 155 0000 00000000 		.space	4
- 156              		.text
- 157              	.Letext0:
- 158              		.file 2 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_ty
- 159              		.file 3 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
- 160              		.file 4 "Core/Inc/init.h"
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\cckqHPyk.s 			page 5
+ 126 009a 0AE0     		b	.L6
+ 127              	.LVL2:
+ 128              	.L7:
+  48:Core/Src/main.c ****             {
+  49:Core/Src/main.c ****                 LED_index = i;  // Начинаем всегда с 0 при изменении к�
+ 129              		.loc 1 49 17 is_stmt 1 view .LVU39
+ 130              		.loc 1 49 27 is_stmt 0 view .LVU40
+ 131 009c 4A4A     		ldr	r2, .L17+12
+ 132 009e 1360     		str	r3, [r2]
+  50:Core/Src/main.c ****                 GPIO |= (0x01 << LED_index);
+ 133              		.loc 1 50 17 is_stmt 1 view .LVU41
+ 134 00a0 4648     		ldr	r0, .L17
+ 135 00a2 D0F81824 		ldr	r2, [r0, #1048]
+ 136              		.loc 1 50 31 is_stmt 0 view .LVU42
+ 137 00a6 0121     		movs	r1, #1
+ 138 00a8 9940     		lsls	r1, r1, r3
+ 139              		.loc 1 50 22 view .LVU43
+ 140 00aa 0A43     		orrs	r2, r2, r1
+ 141 00ac C0F81824 		str	r2, [r0, #1048]
+  47:Core/Src/main.c ****             {
+ 142              		.loc 1 47 44 is_stmt 1 discriminator 3 view .LVU44
+ 143 00b0 0133     		adds	r3, r3, #1
+ 144              	.LVL3:
+ 145              	.L6:
+  47:Core/Src/main.c ****             {
+ 146              		.loc 1 47 31 discriminator 1 view .LVU45
+ 147 00b2 434A     		ldr	r2, .L17+4
+ 148 00b4 1268     		ldr	r2, [r2]
+ 149 00b6 9A42     		cmp	r2, r3
+ 150 00b8 F0DC     		bgt	.L7
+ 151 00ba 3BE0     		b	.L4
+ 152              	.LVL4:
+ 153              	.L11:
+  47:Core/Src/main.c ****             {
+ 154              		.loc 1 47 31 is_stmt 0 discriminator 1 view .LVU46
+ 155              	.LBE2:
+  51:Core/Src/main.c ****             }
+  52:Core/Src/main.c ****         }
+  53:Core/Src/main.c ****         B1_prev = B1;
+  54:Core/Src/main.c ****          
+  55:Core/Src/main.c **** 
+  56:Core/Src/main.c ****         
+  57:Core/Src/main.c **** 
+  58:Core/Src/main.c ****         // Считывание второй кнопки
+  59:Core/Src/main.c ****         if ((GPIO_READ2 == 0)) { B2 = 0;}
+  60:Core/Src/main.c ****         if ((GPIO_READ2 != 0)) { B2 = 1;}
+  61:Core/Src/main.c **** 
+  62:Core/Src/main.c ****         LED_group = count_B1; // отдельно выписываем сколько светод�
+  63:Core/Src/main.c **** 
+  64:Core/Src/main.c ****         if (B2_prev == 0 && B2 == 1){
+  65:Core/Src/main.c ****               LED_group += count_B1;
+  66:Core/Src/main.c ****             
+  67:Core/Src/main.c ****             // Обеспечиваем циклический сдвиг (0..5)
+  68:Core/Src/main.c ****             if (LED_group >= LED_num) { LED_group -= LED_num;} 
+  69:Core/Src/main.c ****         
+  70:Core/Src/main.c ****         // 1. Выключаем ВСЕ светодиоды
+  71:Core/Src/main.c ****             GPIO |= 0x10000;   // Выкл LED0
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s 			page 5
+
+
+ 156              		.loc 1 71 13 is_stmt 1 view .LVU47
+ 157 00bc 3F49     		ldr	r1, .L17
+ 158 00be D1F81834 		ldr	r3, [r1, #1048]
+ 159              		.loc 1 71 18 is_stmt 0 view .LVU48
+ 160 00c2 43F48030 		orr	r0, r3, #65536
+ 161 00c6 C1F81804 		str	r0, [r1, #1048]
+  72:Core/Src/main.c ****             GPIO |= 0x20000;   // Выкл LED1
+ 162              		.loc 1 72 13 is_stmt 1 view .LVU49
+ 163              		.loc 1 72 18 is_stmt 0 view .LVU50
+ 164 00ca 43F44030 		orr	r0, r3, #196608
+ 165 00ce C1F81804 		str	r0, [r1, #1048]
+  73:Core/Src/main.c ****             GPIO |= 0x40000;   // Выкл LED2
+ 166              		.loc 1 73 13 is_stmt 1 view .LVU51
+ 167              		.loc 1 73 18 is_stmt 0 view .LVU52
+ 168 00d2 43F4E020 		orr	r0, r3, #458752
+ 169 00d6 C1F81804 		str	r0, [r1, #1048]
+  74:Core/Src/main.c ****             GPIO |= 0x80000;   // Выкл LED3
+ 170              		.loc 1 74 13 is_stmt 1 view .LVU53
+ 171              		.loc 1 74 18 is_stmt 0 view .LVU54
+ 172 00da 43F47020 		orr	r0, r3, #983040
+ 173 00de C1F81804 		str	r0, [r1, #1048]
+  75:Core/Src/main.c ****             GPIO |= 0x100000;  // Выкл LED4
+ 174              		.loc 1 75 13 is_stmt 1 view .LVU55
+ 175              		.loc 1 75 18 is_stmt 0 view .LVU56
+ 176 00e2 43F4F810 		orr	r0, r3, #2031616
+ 177 00e6 C1F81804 		str	r0, [r1, #1048]
+  76:Core/Src/main.c ****             GPIO |= 0x200000;  // Выкл LED5
+ 178              		.loc 1 76 13 is_stmt 1 view .LVU57
+ 179              		.loc 1 76 18 is_stmt 0 view .LVU58
+ 180 00ea 43F47C13 		orr	r3, r3, #4128768
+ 181 00ee C1F81834 		str	r3, [r1, #1048]
+  77:Core/Src/main.c ****             
+  78:Core/Src/main.c ****             // 2. Включаем группу светодиодов
+  79:Core/Src/main.c ****             for (int i = 0; i < count_B1; i++)
+ 182              		.loc 1 79 13 is_stmt 1 view .LVU59
+ 183              	.LBB3:
+ 184              		.loc 1 79 18 view .LVU60
+ 185              	.LVL5:
+ 186              	.L12:
+ 187              		.loc 1 79 31 discriminator 1 view .LVU61
+ 188 00f2 334B     		ldr	r3, .L17+4
+ 189 00f4 1B68     		ldr	r3, [r3]
+ 190 00f6 9342     		cmp	r3, r2
+ 191 00f8 46DC     		bgt	.L13
+ 192              	.LVL6:
+ 193              	.L10:
+ 194              		.loc 1 79 31 is_stmt 0 discriminator 1 view .LVU62
+ 195              	.LBE3:
+  80:Core/Src/main.c ****             {
+  81:Core/Src/main.c ****                 // Вычисляем индекс светодиода с циклическим �
+  82:Core/Src/main.c ****                 LED_index = (LED_group + i) % LED_num;
+  83:Core/Src/main.c ****                 // Включаем светодиод
+  84:Core/Src/main.c ****                 GPIO |= (0x01 << LED_index);
+  85:Core/Src/main.c ****             }
+  86:Core/Src/main.c ****         }
+  87:Core/Src/main.c ****         B2_prev = B2;
+ 196              		.loc 1 87 9 is_stmt 1 view .LVU63
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s 			page 6
+
+
+ 197              		.loc 1 87 17 is_stmt 0 view .LVU64
+ 198 00fa 344B     		ldr	r3, .L17+16
+ 199 00fc 1A68     		ldr	r2, [r3]
+ 200 00fe 344B     		ldr	r3, .L17+20
+ 201 0100 1A60     		str	r2, [r3]
+  29:Core/Src/main.c ****         
+ 202              		.loc 1 29 10 is_stmt 1 view .LVU65
+ 203              	.L14:
+  29:Core/Src/main.c ****         
+ 204              		.loc 1 29 5 view .LVU66
+  32:Core/Src/main.c ****         if ((GPIO_READ1 != 0)) { B1 = 1;}   
+ 205              		.loc 1 32 9 view .LVU67
+  32:Core/Src/main.c ****         if ((GPIO_READ1 != 0)) { B1 = 1;}   
+ 206              		.loc 1 32 14 is_stmt 0 view .LVU68
+ 207 0102 344B     		ldr	r3, .L17+24
+ 208 0104 D3F81034 		ldr	r3, [r3, #1040]
+  32:Core/Src/main.c ****         if ((GPIO_READ1 != 0)) { B1 = 1;}   
+ 209              		.loc 1 32 12 view .LVU69
+ 210 0108 13F4806F 		tst	r3, #1024
+ 211 010c 02D1     		bne	.L2
+  32:Core/Src/main.c ****         if ((GPIO_READ1 != 0)) { B1 = 1;}   
+ 212              		.loc 1 32 34 is_stmt 1 discriminator 1 view .LVU70
+  32:Core/Src/main.c ****         if ((GPIO_READ1 != 0)) { B1 = 1;}   
+ 213              		.loc 1 32 37 is_stmt 0 discriminator 1 view .LVU71
+ 214 010e 324B     		ldr	r3, .L17+28
+ 215 0110 0022     		movs	r2, #0
+ 216 0112 1A60     		str	r2, [r3]
+ 217              	.L2:
+  33:Core/Src/main.c ****         if (B1_prev == 0 && B1 == 1) {
+ 218              		.loc 1 33 9 is_stmt 1 view .LVU72
+  33:Core/Src/main.c ****         if (B1_prev == 0 && B1 == 1) {
+ 219              		.loc 1 33 14 is_stmt 0 view .LVU73
+ 220 0114 2F4B     		ldr	r3, .L17+24
+ 221 0116 D3F81034 		ldr	r3, [r3, #1040]
+  33:Core/Src/main.c ****         if (B1_prev == 0 && B1 == 1) {
+ 222              		.loc 1 33 12 view .LVU74
+ 223 011a 13F4806F 		tst	r3, #1024
+ 224 011e 02D0     		beq	.L3
+  33:Core/Src/main.c ****         if (B1_prev == 0 && B1 == 1) {
+ 225              		.loc 1 33 34 is_stmt 1 discriminator 1 view .LVU75
+  33:Core/Src/main.c ****         if (B1_prev == 0 && B1 == 1) {
+ 226              		.loc 1 33 37 is_stmt 0 discriminator 1 view .LVU76
+ 227 0120 2D4B     		ldr	r3, .L17+28
+ 228 0122 0122     		movs	r2, #1
+ 229 0124 1A60     		str	r2, [r3]
+ 230              	.L3:
+  34:Core/Src/main.c ****             
+ 231              		.loc 1 34 9 is_stmt 1 view .LVU77
+  34:Core/Src/main.c ****             
+ 232              		.loc 1 34 21 is_stmt 0 view .LVU78
+ 233 0126 2D4B     		ldr	r3, .L17+32
+ 234 0128 1B68     		ldr	r3, [r3]
+  34:Core/Src/main.c ****             
+ 235              		.loc 1 34 12 view .LVU79
+ 236 012a 1BB9     		cbnz	r3, .L4
+  34:Core/Src/main.c ****             
+ 237              		.loc 1 34 32 discriminator 1 view .LVU80
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s 			page 7
+
+
+ 238 012c 2A4A     		ldr	r2, .L17+28
+ 239 012e 1268     		ldr	r2, [r2]
+  34:Core/Src/main.c ****             
+ 240              		.loc 1 34 26 discriminator 1 view .LVU81
+ 241 0130 012A     		cmp	r2, #1
+ 242 0132 88D0     		beq	.L16
+ 243              	.L4:
+  53:Core/Src/main.c ****          
+ 244              		.loc 1 53 9 is_stmt 1 view .LVU82
+  53:Core/Src/main.c ****          
+ 245              		.loc 1 53 17 is_stmt 0 view .LVU83
+ 246 0134 284B     		ldr	r3, .L17+28
+ 247 0136 1A68     		ldr	r2, [r3]
+ 248 0138 284B     		ldr	r3, .L17+32
+ 249 013a 1A60     		str	r2, [r3]
+  59:Core/Src/main.c ****         if ((GPIO_READ2 != 0)) { B2 = 1;}
+ 250              		.loc 1 59 9 is_stmt 1 view .LVU84
+  59:Core/Src/main.c ****         if ((GPIO_READ2 != 0)) { B2 = 1;}
+ 251              		.loc 1 59 14 is_stmt 0 view .LVU85
+ 252 013c 254B     		ldr	r3, .L17+24
+ 253 013e D3F81034 		ldr	r3, [r3, #1040]
+  59:Core/Src/main.c ****         if ((GPIO_READ2 != 0)) { B2 = 1;}
+ 254              		.loc 1 59 12 view .LVU86
+ 255 0142 13F4006F 		tst	r3, #2048
+ 256 0146 02D1     		bne	.L8
+  59:Core/Src/main.c ****         if ((GPIO_READ2 != 0)) { B2 = 1;}
+ 257              		.loc 1 59 34 is_stmt 1 discriminator 1 view .LVU87
+  59:Core/Src/main.c ****         if ((GPIO_READ2 != 0)) { B2 = 1;}
+ 258              		.loc 1 59 37 is_stmt 0 discriminator 1 view .LVU88
+ 259 0148 204B     		ldr	r3, .L17+16
+ 260 014a 0022     		movs	r2, #0
+ 261 014c 1A60     		str	r2, [r3]
+ 262              	.L8:
+  60:Core/Src/main.c **** 
+ 263              		.loc 1 60 9 is_stmt 1 view .LVU89
+  60:Core/Src/main.c **** 
+ 264              		.loc 1 60 14 is_stmt 0 view .LVU90
+ 265 014e 214B     		ldr	r3, .L17+24
+ 266 0150 D3F81034 		ldr	r3, [r3, #1040]
+  60:Core/Src/main.c **** 
+ 267              		.loc 1 60 12 view .LVU91
+ 268 0154 13F4006F 		tst	r3, #2048
+ 269 0158 02D0     		beq	.L9
+  60:Core/Src/main.c **** 
+ 270              		.loc 1 60 34 is_stmt 1 discriminator 1 view .LVU92
+  60:Core/Src/main.c **** 
+ 271              		.loc 1 60 37 is_stmt 0 discriminator 1 view .LVU93
+ 272 015a 1C4B     		ldr	r3, .L17+16
+ 273 015c 0122     		movs	r2, #1
+ 274 015e 1A60     		str	r2, [r3]
+ 275              	.L9:
+  62:Core/Src/main.c **** 
+ 276              		.loc 1 62 9 is_stmt 1 view .LVU94
+  62:Core/Src/main.c **** 
+ 277              		.loc 1 62 19 is_stmt 0 view .LVU95
+ 278 0160 174B     		ldr	r3, .L17+4
+ 279 0162 1B68     		ldr	r3, [r3]
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s 			page 8
+
+
+ 280 0164 174A     		ldr	r2, .L17+8
+ 281 0166 1360     		str	r3, [r2]
+  64:Core/Src/main.c ****               LED_group += count_B1;
+ 282              		.loc 1 64 9 is_stmt 1 view .LVU96
+  64:Core/Src/main.c ****               LED_group += count_B1;
+ 283              		.loc 1 64 21 is_stmt 0 view .LVU97
+ 284 0168 194A     		ldr	r2, .L17+20
+ 285 016a 1268     		ldr	r2, [r2]
+  64:Core/Src/main.c ****               LED_group += count_B1;
+ 286              		.loc 1 64 12 view .LVU98
+ 287 016c 002A     		cmp	r2, #0
+ 288 016e C4D1     		bne	.L10
+  64:Core/Src/main.c ****               LED_group += count_B1;
+ 289              		.loc 1 64 32 discriminator 1 view .LVU99
+ 290 0170 1649     		ldr	r1, .L17+16
+ 291 0172 0968     		ldr	r1, [r1]
+  64:Core/Src/main.c ****               LED_group += count_B1;
+ 292              		.loc 1 64 26 discriminator 1 view .LVU100
+ 293 0174 0129     		cmp	r1, #1
+ 294 0176 C0D1     		bne	.L10
+  65:Core/Src/main.c ****             
+ 295              		.loc 1 65 15 is_stmt 1 view .LVU101
+  65:Core/Src/main.c ****             
+ 296              		.loc 1 65 25 is_stmt 0 view .LVU102
+ 297 0178 5B00     		lsls	r3, r3, #1
+ 298 017a 1249     		ldr	r1, .L17+8
+ 299 017c 0B60     		str	r3, [r1]
+  68:Core/Src/main.c ****         
+ 300              		.loc 1 68 13 is_stmt 1 view .LVU103
+  68:Core/Src/main.c ****         
+ 301              		.loc 1 68 16 is_stmt 0 view .LVU104
+ 302 017e 052B     		cmp	r3, #5
+ 303 0180 9CDD     		ble	.L11
+  68:Core/Src/main.c ****         
+ 304              		.loc 1 68 41 is_stmt 1 discriminator 1 view .LVU105
+  68:Core/Src/main.c ****         
+ 305              		.loc 1 68 51 is_stmt 0 discriminator 1 view .LVU106
+ 306 0182 063B     		subs	r3, r3, #6
+ 307 0184 0B60     		str	r3, [r1]
+ 308 0186 99E7     		b	.L11
+ 309              	.LVL7:
+ 310              	.L13:
+ 311              	.LBB4:
+  82:Core/Src/main.c ****                 // Включаем светодиод
+ 312              		.loc 1 82 17 is_stmt 1 view .LVU107
+  82:Core/Src/main.c ****                 // Включаем светодиод
+ 313              		.loc 1 82 40 is_stmt 0 view .LVU108
+ 314 0188 0E4B     		ldr	r3, .L17+8
+ 315 018a 1968     		ldr	r1, [r3]
+ 316 018c 1144     		add	r1, r1, r2
+  82:Core/Src/main.c ****                 // Включаем светодиод
+ 317              		.loc 1 82 45 view .LVU109
+ 318 018e 144B     		ldr	r3, .L17+36
+ 319 0190 83FB0103 		smull	r0, r3, r3, r1
+ 320 0194 A3EBE173 		sub	r3, r3, r1, asr #31
+ 321 0198 03EB4303 		add	r3, r3, r3, lsl #1
+ 322 019c 5800     		lsls	r0, r3, #1
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s 			page 9
+
+
+ 323 019e 0B1A     		subs	r3, r1, r0
+  82:Core/Src/main.c ****                 // Включаем светодиод
+ 324              		.loc 1 82 27 view .LVU110
+ 325 01a0 0949     		ldr	r1, .L17+12
+ 326 01a2 0B60     		str	r3, [r1]
+  84:Core/Src/main.c ****             }
+ 327              		.loc 1 84 17 is_stmt 1 view .LVU111
+ 328 01a4 054C     		ldr	r4, .L17
+ 329 01a6 D4F81814 		ldr	r1, [r4, #1048]
+  84:Core/Src/main.c ****             }
+ 330              		.loc 1 84 31 is_stmt 0 view .LVU112
+ 331 01aa 0120     		movs	r0, #1
+ 332 01ac 00FA03F3 		lsl	r3, r0, r3
+  84:Core/Src/main.c ****             }
+ 333              		.loc 1 84 22 view .LVU113
+ 334 01b0 1943     		orrs	r1, r1, r3
+ 335 01b2 C4F81814 		str	r1, [r4, #1048]
+  79:Core/Src/main.c ****             {
+ 336              		.loc 1 79 44 is_stmt 1 discriminator 3 view .LVU114
+ 337 01b6 0244     		add	r2, r2, r0
+ 338              	.LVL8:
+  79:Core/Src/main.c ****             {
+ 339              		.loc 1 79 44 is_stmt 0 discriminator 3 view .LVU115
+ 340 01b8 9BE7     		b	.L12
+ 341              	.L18:
+ 342 01ba 00BF     		.align	2
+ 343              	.L17:
+ 344 01bc 00100240 		.word	1073876992
+ 345 01c0 00000000 		.word	count_B1
+ 346 01c4 00000000 		.word	LED_group
+ 347 01c8 00000000 		.word	LED_index
+ 348 01cc 00000000 		.word	B2
+ 349 01d0 00000000 		.word	B2_prev
+ 350 01d4 00000240 		.word	1073872896
+ 351 01d8 00000000 		.word	B1
+ 352 01dc 00000000 		.word	B1_prev
+ 353 01e0 ABAAAA2A 		.word	715827883
+ 354              	.LBE4:
+ 355              		.cfi_endproc
+ 356              	.LFE0:
+ 358              		.global	LED_num
+ 359              		.section	.rodata.LED_num,"a"
+ 360              		.align	2
+ 363              	LED_num:
+ 364 0000 06000000 		.word	6
+ 365              		.global	LED_index
+ 366              		.section	.bss.LED_index,"aw",%nobits
+ 367              		.align	2
+ 370              	LED_index:
+ 371 0000 00000000 		.space	4
+ 372              		.global	LED_group
+ 373              		.section	.bss.LED_group,"aw",%nobits
+ 374              		.align	2
+ 377              	LED_group:
+ 378 0000 00000000 		.space	4
+ 379              		.global	count_B1
+ 380              		.section	.data.count_B1,"aw"
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s 			page 10
+
+
+ 381              		.align	2
+ 384              	count_B1:
+ 385 0000 01000000 		.word	1
+ 386              		.global	B2_prev
+ 387              		.section	.bss.B2_prev,"aw",%nobits
+ 388              		.align	2
+ 391              	B2_prev:
+ 392 0000 00000000 		.space	4
+ 393              		.global	B2
+ 394              		.section	.bss.B2,"aw",%nobits
+ 395              		.align	2
+ 398              	B2:
+ 399 0000 00000000 		.space	4
+ 400              		.global	B1_prev
+ 401              		.section	.bss.B1_prev,"aw",%nobits
+ 402              		.align	2
+ 405              	B1_prev:
+ 406 0000 00000000 		.space	4
+ 407              		.global	B1
+ 408              		.section	.bss.B1,"aw",%nobits
+ 409              		.align	2
+ 412              	B1:
+ 413 0000 00000000 		.space	4
+ 414              		.text
+ 415              	.Letext0:
+ 416              		.file 2 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_ty
+ 417              		.file 3 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
+ 418              		.file 4 "Core/Inc/init.h"
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\kovav\AppData\Local\Temp\cckqHPyk.s:21     .text.main:00000000 $t
-C:\Users\kovav\AppData\Local\Temp\cckqHPyk.s:27     .text.main:00000000 main
-C:\Users\kovav\AppData\Local\Temp\cckqHPyk.s:143    .text.main:000000b4 $d
-C:\Users\kovav\AppData\Local\Temp\cckqHPyk.s:154    .bss.B:00000000 B
-C:\Users\kovav\AppData\Local\Temp\cckqHPyk.s:151    .bss.B:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:21     .text.main:00000000 $t
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:27     .text.main:00000000 main
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:344    .text.main:000001bc $d
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:384    .data.count_B1:00000000 count_B1
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:377    .bss.LED_group:00000000 LED_group
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:370    .bss.LED_index:00000000 LED_index
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:398    .bss.B2:00000000 B2
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:391    .bss.B2_prev:00000000 B2_prev
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:412    .bss.B1:00000000 B1
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:405    .bss.B1_prev:00000000 B1_prev
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:363    .rodata.LED_num:00000000 LED_num
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:360    .rodata.LED_num:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:367    .bss.LED_index:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:374    .bss.LED_group:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:381    .data.count_B1:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:388    .bss.B2_prev:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:395    .bss.B2:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:402    .bss.B1_prev:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccR5gpOD.s:409    .bss.B1:00000000 $d
 
 UNDEFINED SYMBOLS
 GPIO_Init

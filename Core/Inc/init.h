@@ -9,7 +9,7 @@
 #define GPIOF_MODER (*(uint32_t *)(0x40021400 + 0x00))          // вход или выход портов F
 #define GPIOF_OSPEED (*(uint32_t *)(0x40021400 + 0x08))         //скорость работы портов F
 #define GPIOF_PPUP (*(uint32_t *)(0x40021400 + 0x0C) |= 0x00)  //нет подтяжки/стяжки на портах F
-#define GPIOB_PPUP (*(uint32_t *)(0x40020400 + 0x0C) |= 0x00)           // Стяжка для кнопок
+#define GPIOB_PPUP (*(uint32_t *)(0x40020400 + 0x0C) |= 0x00)  // Стяжка для кнопок
 #define GPIO *(uint32_t *)(0x40021400 + 0x18)                   // вкл пина группы F
 
 #define GPIO_READ1 (*(uint32_t *)(0x40020400 + 0x10) & 0x400) //B10

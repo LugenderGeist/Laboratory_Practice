@@ -1,12 +1,10 @@
 #include "init.h"
-const int LED_number = 6;
-uint8_t LED_start = 1;
-
 
 void GPIO_Init (void){
 RCC_GPIO_ENF;
 RCC_GPIO_ENB;
 GPIOF_PPUP;
+GPIOB_PPUP;
 
 GPIOF_MODER |= GPIO_SET0;
 GPIOF_OSPEED |= GPIO_SET0;
@@ -26,6 +24,4 @@ GPIOF_OSPEED |= GPIO_SET4;
 GPIOF_MODER |= GPIO_SET5;
 GPIOF_OSPEED |= GPIO_SET5;
 
-//PIOB_PPUP |= 0x40000;
-//GPIOB_PPUP |= 0x100000;
 }
