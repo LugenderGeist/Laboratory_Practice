@@ -1,7 +1,8 @@
 #include "init.h"
 
 void GPIO_Init (void){
-RCC_GPIO_EN;
+RCC_GPIO_ENF;
+RCC_GPIO_ENB;
 GPIOF_PPUP;
 
 GPIOF_MODER |= GPIO_SET0;
