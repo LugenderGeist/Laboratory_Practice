@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccFdup8a.s 			page 1
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccEFOXxt.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccFdup8a.s 			page 1
   47              		.loc 1 9 13 is_stmt 0 view .LVU6
   48 001c 41F00102 		orr	r2, r1, #1
   49 0020 C3F80024 		str	r2, [r3, #1024]
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccFdup8a.s 			page 2
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccEFOXxt.s 			page 2
 
 
   10:Core/Src/init.c **** GPIOF_OSPEED |= GPIO_SET0;
@@ -118,16 +118,15 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccFdup8a.s 			page 1
   89 0070 41F4A061 		orr	r1, r1, #1280
   90 0074 C3F80014 		str	r1, [r3, #1024]
   25:Core/Src/init.c **** GPIOF_OSPEED |= GPIO_SET5;
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccFdup8a.s 			page 3
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccEFOXxt.s 			page 3
 
 
   91              		.loc 1 25 1 is_stmt 1 view .LVU27
   92              		.loc 1 25 14 is_stmt 0 view .LVU28
   93 0078 42F4A062 		orr	r2, r2, #1280
   94 007c C3F80824 		str	r2, [r3, #1032]
-  26:Core/Src/init.c **** 
-  27:Core/Src/init.c **** }...
-  95              		.loc 1 27 1 view .LVU29
+  26:Core/Src/init.c **** }
+  95              		.loc 1 26 1 view .LVU29
   96 0080 7047     		bx	lr
   97              	.L3:
   98 0082 00BF     		.align	2
@@ -136,17 +135,79 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccFdup8a.s 			page 1
  101 0088 00100240 		.word	1073876992
  102              		.cfi_endproc
  103              	.LFE0:
- 105              		.text
- 106              	.Letext0:
- 107              		.file 2 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_ty
- 108              		.file 3 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccFdup8a.s 			page 4
+ 105              		.section	.text.off_all_led,"ax",%progbits
+ 106              		.align	1
+ 107              		.global	off_all_led
+ 108              		.syntax unified
+ 109              		.thumb
+ 110              		.thumb_func
+ 112              	off_all_led:
+ 113              	.LFB1:
+  27:Core/Src/init.c **** 
+  28:Core/Src/init.c **** void off_all_led(void) {
+ 114              		.loc 1 28 24 is_stmt 1 view -0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118              		@ link register save eliminated.
+  29:Core/Src/init.c ****     GPIO |= 0x10000;   // Выкл LED0
+ 119              		.loc 1 29 5 view .LVU31
+ 120 0000 0D4A     		ldr	r2, .L5
+ 121 0002 D2F81834 		ldr	r3, [r2, #1048]
+ 122              		.loc 1 29 10 is_stmt 0 view .LVU32
+ 123 0006 43F48031 		orr	r1, r3, #65536
+ 124 000a C2F81814 		str	r1, [r2, #1048]
+  30:Core/Src/init.c ****     GPIO |= 0x20000;   // Выкл LED1
+ 125              		.loc 1 30 5 is_stmt 1 view .LVU33
+ 126              		.loc 1 30 10 is_stmt 0 view .LVU34
+ 127 000e 43F44031 		orr	r1, r3, #196608
+ 128 0012 C2F81814 		str	r1, [r2, #1048]
+  31:Core/Src/init.c ****     GPIO |= 0x40000;   // Выкл LED2
+ 129              		.loc 1 31 5 is_stmt 1 view .LVU35
+ 130              		.loc 1 31 10 is_stmt 0 view .LVU36
+ 131 0016 43F4E021 		orr	r1, r3, #458752
+ 132 001a C2F81814 		str	r1, [r2, #1048]
+  32:Core/Src/init.c ****     GPIO |= 0x80000;   // Выкл LED3
+ 133              		.loc 1 32 5 is_stmt 1 view .LVU37
+ 134              		.loc 1 32 10 is_stmt 0 view .LVU38
+ 135 001e 43F47021 		orr	r1, r3, #983040
+ 136 0022 C2F81814 		str	r1, [r2, #1048]
+  33:Core/Src/init.c ****     GPIO |= 0x100000;  // Выкл LED4
+ 137              		.loc 1 33 5 is_stmt 1 view .LVU39
+ 138              		.loc 1 33 10 is_stmt 0 view .LVU40
+ 139 0026 43F4F811 		orr	r1, r3, #2031616
+ 140 002a C2F81814 		str	r1, [r2, #1048]
+  34:Core/Src/init.c ****     GPIO |= 0x200000;  // Выкл LED5
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccEFOXxt.s 			page 4
+
+
+ 141              		.loc 1 34 5 is_stmt 1 view .LVU41
+ 142              		.loc 1 34 10 is_stmt 0 view .LVU42
+ 143 002e 43F47C13 		orr	r3, r3, #4128768
+ 144 0032 C2F81834 		str	r3, [r2, #1048]
+  35:Core/Src/init.c **** }
+ 145              		.loc 1 35 1 view .LVU43
+ 146 0036 7047     		bx	lr
+ 147              	.L6:
+ 148              		.align	2
+ 149              	.L5:
+ 150 0038 00100240 		.word	1073876992
+ 151              		.cfi_endproc
+ 152              	.LFE1:
+ 154              		.text
+ 155              	.Letext0:
+ 156              		.file 2 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_ty
+ 157              		.file 3 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccEFOXxt.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 init.c
-C:\Users\kovav\AppData\Local\Temp\ccFdup8a.s:21     .text.GPIO_Init:00000000 $t
-C:\Users\kovav\AppData\Local\Temp\ccFdup8a.s:27     .text.GPIO_Init:00000000 GPIO_Init
-C:\Users\kovav\AppData\Local\Temp\ccFdup8a.s:100    .text.GPIO_Init:00000084 $d
+C:\Users\kovav\AppData\Local\Temp\ccEFOXxt.s:21     .text.GPIO_Init:00000000 $t
+C:\Users\kovav\AppData\Local\Temp\ccEFOXxt.s:27     .text.GPIO_Init:00000000 GPIO_Init
+C:\Users\kovav\AppData\Local\Temp\ccEFOXxt.s:100    .text.GPIO_Init:00000084 $d
+C:\Users\kovav\AppData\Local\Temp\ccEFOXxt.s:106    .text.off_all_led:00000000 $t
+C:\Users\kovav\AppData\Local\Temp\ccEFOXxt.s:112    .text.off_all_led:00000000 off_all_led
+C:\Users\kovav\AppData\Local\Temp\ccEFOXxt.s:150    .text.off_all_led:00000038 $d
 
 NO UNDEFINED SYMBOLS

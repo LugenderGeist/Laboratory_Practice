@@ -23,5 +23,13 @@ GPIOF_OSPEED |= GPIO_SET4;
 
 GPIOF_MODER |= GPIO_SET5;
 GPIOF_OSPEED |= GPIO_SET5;
+}
 
+void off_all_led(void) {
+    GPIO |= 0x10000;   // Выкл LED0
+    GPIO |= 0x20000;   // Выкл LED1
+    GPIO |= 0x40000;   // Выкл LED2
+    GPIO |= 0x80000;   // Выкл LED3
+    GPIO |= 0x100000;  // Выкл LED4
+    GPIO |= 0x200000;  // Выкл LED5
 }
