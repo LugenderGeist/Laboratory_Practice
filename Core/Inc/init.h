@@ -9,11 +9,11 @@
 #define GPIOF_MODER (*(uint32_t *)(0x40021400 + 0x00))          // вход или выход портов F
 #define GPIOF_OSPEED (*(uint32_t *)(0x40021400 + 0x08))         // скорость работы портов F
 #define GPIOF_PPUP (*(uint32_t *)(0x40021400 + 0x0C) |= 0x00)   // нет подтяжки/стяжки на портах F
-#define GPIOB_PPUP (*(uint32_t *)(0x40020400 + 0x0C) |= 0x00)   // Стяжка для кнопок
-#define GPIO *(uint32_t *)(0x40021400 + 0x18)                   // вкл пина группы F
+#define GPIOB_PPUP (*(uint32_t *)(0x40020400 + 0x0C) |= 0x00)   // нет подтяжки/стяжки на портах B
+#define GPIO *(uint32_t *)(0x40021400 + 0x18)                   // подача сигнала на выход пинов группы F
 
-#define GPIO_READ1 (*(uint32_t *)(0x40020400 + 0x10) & 0x400) // B10
-#define GPIO_READ2 (*(uint32_t *)(0x40020400 + 0x10) & 0x800) // B11
+#define GPIO_READ1 (*(uint32_t *)(0x40020400 + 0x10) & 0x400) // GPIO B10, кнопка 1
+#define GPIO_READ2 (*(uint32_t *)(0x40020400 + 0x10) & 0x800) // GPIO B11, кнопка 2
 
 #define GPIO_SET0 0x01  // GPIO F0 01
 #define GPIO_SET1 0x04  // GPIO F1 01

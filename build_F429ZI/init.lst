@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 1
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 1
    7:Core/Src/init.c ****     GPIOB_PPUP;
   50              		.loc 1 7 5 view .LVU4
    8:Core/Src/init.c **** 
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 2
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s 			page 2
 
 
    9:Core/Src/init.c ****     uint32_t gpio_sets[] = {GPIO_SET0, GPIO_SET1, GPIO_SET2, GPIO_SET3, GPIO_SET4, GPIO_SET5};
@@ -70,7 +70,7 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 1
   56 0020 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
   57 0024 94E80300 		ldm	r4, {r0, r1}
   58 0028 8CE80300 		stm	ip, {r0, r1}
-  10:Core/Src/init.c ****     for (int i = 0; i < 6; i++) {
+  10:Core/Src/init.c ****     for (int i = 0; i < 6; i++){
   59              		.loc 1 10 5 is_stmt 1 view .LVU7
   60              	.LBB2:
   61              		.loc 1 10 10 view .LVU8
@@ -100,12 +100,12 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 1
   83              		.loc 1 12 22 view .LVU16
   84 004e 0143     		orrs	r1, r1, r0
   85 0050 C3F80814 		str	r1, [r3, #1032]
-  10:Core/Src/init.c ****     for (int i = 0; i < 6; i++) {
+  10:Core/Src/init.c ****     for (int i = 0; i < 6; i++){
   86              		.loc 1 10 29 is_stmt 1 discriminator 3 view .LVU17
   87 0054 0132     		adds	r2, r2, #1
   88              	.LVL2:
   89              	.L2:
-  10:Core/Src/init.c ****     for (int i = 0; i < 6; i++) {
+  10:Core/Src/init.c ****     for (int i = 0; i < 6; i++){
   90              		.loc 1 10 23 discriminator 1 view .LVU18
   91 0056 052A     		cmp	r2, #5
   92 0058 EADD     		ble	.L3
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 1
   97              		.cfi_def_cfa_offset 4
   98              		@ sp needed
   99 005c 5DF8044B 		ldr	r4, [sp], #4
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 3
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s 			page 3
 
 
  100              	.LCFI3:
@@ -142,8 +142,8 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 1
  120              	off_all_led:
  121              	.LFB1:
   15:Core/Src/init.c **** 
-  16:Core/Src/init.c **** void off_all_led(void) {
- 122              		.loc 1 16 24 is_stmt 1 view -0
+  16:Core/Src/init.c **** void off_all_led(void){
+ 122              		.loc 1 16 23 is_stmt 1 view -0
  123              		.cfi_startproc
  124              		@ args = 0, pretend = 0, frame = 0
  125              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 1
   22:Core/Src/init.c ****     GPIO |= 0x200000; // Выкл LED5
  149              		.loc 1 22 5 is_stmt 1 view .LVU31
  150              		.loc 1 22 10 is_stmt 0 view .LVU32
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 4
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s 			page 4
 
 
  151 002e 43F47C13 		orr	r3, r3, #4128768
@@ -202,8 +202,8 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 1
  170              	.LVL3:
  171              	.LFB2:
   24:Core/Src/init.c **** 
-  25:Core/Src/init.c **** int read_button(uint8_t button_pin) {
- 172              		.loc 1 25 37 is_stmt 1 view -0
+  25:Core/Src/init.c **** int read_button(uint8_t button_pin){
+ 172              		.loc 1 25 36 is_stmt 1 view -0
  173              		.cfi_startproc
  174              		@ args = 0, pretend = 0, frame = 0
  175              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -222,33 +222,65 @@ ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 1
  185 0004 7047     		bx	lr
  186              		.cfi_endproc
  187              	.LFE2:
- 189              		.section	.rodata
- 190              		.align	2
- 191              		.set	.LANCHOR0,. + 0
- 192              	.LC0:
- 193 0000 01000000 		.word	1
- 194 0004 04000000 		.word	4
- 195 0008 10000000 		.word	16
- 196 000c 40000000 		.word	64
- 197 0010 00010000 		.word	256
- 198 0014 00040000 		.word	1024
- 199              		.text
- 200              	.Letext0:
- 201              		.file 2 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_ty
- 202              		.file 3 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
-ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s 			page 5
+ 189              		.global	B2_prev
+ 190              		.section	.bss.B2_prev,"aw",%nobits
+ 191              		.align	2
+ 194              	B2_prev:
+ 195 0000 00000000 		.space	4
+ 196              		.global	B2
+ 197              		.section	.bss.B2,"aw",%nobits
+ 198              		.align	2
+ 201              	B2:
+ 202 0000 00000000 		.space	4
+ 203              		.global	B1_prev
+ 204              		.section	.bss.B1_prev,"aw",%nobits
+ 205              		.align	2
+ 208              	B1_prev:
+ 209 0000 00000000 		.space	4
+ 210              		.global	B1
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s 			page 5
+
+
+ 211              		.section	.bss.B1,"aw",%nobits
+ 212              		.align	2
+ 215              	B1:
+ 216 0000 00000000 		.space	4
+ 217              		.section	.rodata
+ 218              		.align	2
+ 219              		.set	.LANCHOR0,. + 0
+ 220              	.LC0:
+ 221 0000 01000000 		.word	1
+ 222 0004 04000000 		.word	4
+ 223 0008 10000000 		.word	16
+ 224 000c 40000000 		.word	64
+ 225 0010 00010000 		.word	256
+ 226 0014 00040000 		.word	1024
+ 227              		.text
+ 228              	.Letext0:
+ 229              		.file 2 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_ty
+ 230              		.file 3 "C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
+ 231              		.file 4 "Core/Inc/init.h"
+ARM GAS  C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 init.c
-C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s:21     .text.GPIO_Init:00000000 $t
-C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s:27     .text.GPIO_Init:00000000 GPIO_Init
-C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s:107    .text.GPIO_Init:00000064 $d
-C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s:114    .text.off_all_led:00000000 $t
-C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s:120    .text.off_all_led:00000000 off_all_led
-C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s:158    .text.off_all_led:00000038 $d
-C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s:163    .text.read_button:00000000 $t
-C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s:169    .text.read_button:00000000 read_button
-C:\Users\kovav\AppData\Local\Temp\ccW28Yns.s:190    .rodata:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:21     .text.GPIO_Init:00000000 $t
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:27     .text.GPIO_Init:00000000 GPIO_Init
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:107    .text.GPIO_Init:00000064 $d
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:114    .text.off_all_led:00000000 $t
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:120    .text.off_all_led:00000000 off_all_led
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:158    .text.off_all_led:00000038 $d
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:163    .text.read_button:00000000 $t
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:169    .text.read_button:00000000 read_button
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:194    .bss.B2_prev:00000000 B2_prev
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:191    .bss.B2_prev:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:201    .bss.B2:00000000 B2
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:198    .bss.B2:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:208    .bss.B1_prev:00000000 B1_prev
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:205    .bss.B1_prev:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:215    .bss.B1:00000000 B1
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:212    .bss.B1:00000000 $d
+C:\Users\kovav\AppData\Local\Temp\ccNqMBwQ.s:218    .rodata:00000000 $d
 
 NO UNDEFINED SYMBOLS

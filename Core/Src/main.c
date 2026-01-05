@@ -1,27 +1,23 @@
 #include <init.h>
+volatile int B1;
+volatile int B1_prev;
+volatile int B2;
+volatile int B2_prev;
 
-int B1;
-int B1_prev;
-int B2;
-int B2_prev;
-
+int LED_index;          // индекс текущего светодиода
 int count_B1 = 1;       // число светодиодов, горящих одновременно
 int LED_group = 0;      // позиция группы светодиодов
-int LED_index;          // индекс текущего светодиода
 const int LED_num = 6;  // всего светодиодов в системе
 
-int main(void)
-{
-
+int main(void){
     GPIO_Init();
     off_all_led();
-    *(uint32_t *)(0x40021400 + 0x18) |= 0x01; // включение первого
+    *(uint32_t *)(0x40021400 + 0x18) |= 0x01; // включение первого светодиода
 
-    while (1)
-    {
-        // Считывание первой кнопки
-        B1 = read_button(GPIO_READ1);
-
+    while (1){
+       
+       // Считывание первой кнопки
+       B1 = read_button(GPIO_READ1);
         if (B1_prev == 0 && B1 == 1){
             count_B1++;
             if (count_B1 > LED_num){
