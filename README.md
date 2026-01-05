@@ -59,7 +59,7 @@
 *Блок-схема алгоритма*  
 *Блок-схемы функций*  
 Для иллюстрации работы алгоритма через MCU VIewer были сняты данные о состоянии переменных в процессе работы кода.  
-![b21](https://github.com/LugenderGeist/Laboratory_Practice/tree/Kovaleva_lb1/images/first_button.jpg) 
+![b21](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/first_button.jpg) 
 Работа первой кнопки  
 ![b21](https://github.com/LugenderGeist/Laboratory_Practice/tree/Kovaleva_lb1/images/second_button1.jpg)  
 Работа второй кнопки при одном светодиоде  
