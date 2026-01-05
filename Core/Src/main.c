@@ -9,7 +9,6 @@ int count_B1 = 1;       // число светодиодов, горящих о�
 int LED_group = 0;      // позиция группы светодиодов
 int LED_index;          // индекс текущего светодиода
 const int LED_num = 6;  // всего светодиодов в системе
-static int all_leds_on; // флаг, включен ыли все светодиоды
 
 int main(void)
 {
@@ -43,7 +42,7 @@ int main(void)
 
         if (B2_prev == 0 && B2 == 1){
             if (count_B1 == LED_num){
-                all_leds_on = 0;
+                static int all_leds_on = 0; //добавляем флаг, включились ли все светодиоды
 
                 if (all_leds_on == 0){
                     off_all_led();

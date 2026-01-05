@@ -787,11 +787,11 @@ LOAD C:/tools_stm/xpack-arm-none-eabi-gcc-13.2.1-1.1/bin/../lib/gcc/arm-none-eab
  .debug_ranges  0x00000058       0x20 build_F429ZI/init.o
  .debug_ranges  0x00000078       0x20 build_F429ZI/startup_stm32f429xx.o
 
-.debug_line     0x00000000      0x756
+.debug_line     0x00000000      0x74b
  .debug_line    0x00000000      0x27c build_F429ZI/system_stm32f4xx.o
- .debug_line    0x0000027c      0x2b5 build_F429ZI/main.o
- .debug_line    0x00000531      0x19b build_F429ZI/init.o
- .debug_line    0x000006cc       0x8a build_F429ZI/startup_stm32f429xx.o
+ .debug_line    0x0000027c      0x2aa build_F429ZI/main.o
+ .debug_line    0x00000526      0x19b build_F429ZI/init.o
+ .debug_line    0x000006c1       0x8a build_F429ZI/startup_stm32f429xx.o
 
 .debug_str      0x00000000      0x412
  .debug_str     0x00000000      0x412 build_F429ZI/system_stm32f4xx.o
