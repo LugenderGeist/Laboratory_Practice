@@ -10,7 +10,7 @@
 Принципиальная схема подключения в результате имеет вид:  
 *Принципиальная схема подключения периферии*  
 Собранная схема имеет вид:  
-!([scheme](https://github.com/LugenderGeist/Laboratory_Practice/tree/Kovaleva_lb1/images/scheme.jpg))  
+![scheme](https://github.com/LugenderGeist/Laboratory_Practice/tree/Kovaleva_lb1/images/scheme.jpg)  
 ### Настройка регистров
 Следующим этапом будет применение настроек регистров для используемых портов с помощью непосредственного взаимодействия с абсолютными адресами регистров. Для того, чтобы порты могли принимать и отправлять данные - на них необходимо включить тактирование. Включению тактирования на портах GPIOB и GPIOF соответствуют функции на одной шине AHB1, которая имеет адрес:  
 *0x40023800*  
@@ -59,13 +59,13 @@
 *Блок-схема алгоритма*  
 *Блок-схемы функций*  
 Для иллюстрации работы алгоритма через MCU VIewer были сняты данные о состоянии переменных в процессе работы кода.  
-!([b1](https://github.com/LugenderGeist/Laboratory_Practice/tree/Kovaleva_lb1/images/first_button.jpg))  
+![b1](https://github.com/LugenderGeist/Laboratory_Practice/tree/Kovaleva_lb1/images/first_button.jpg)  
 Работа первой кнопки  
-!([b21](https://github.com/LugenderGeist/Laboratory_Practice/tree/Kovaleva_lb1/images/second_button1.jpg))  
+![b21](https://github.com/LugenderGeist/Laboratory_Practice/tree/Kovaleva_lb1/images/second_button1.jpg)  
 Работа второй кнопки при одном светодиоде  
-!([b21](https://github.com/LugenderGeist/Laboratory_Practice/tree/Kovaleva_lb1/images/second_button2.jpg))  
+![b21](https://github.com/LugenderGeist/Laboratory_Practice/tree/Kovaleva_lb1/images/second_button2.jpg)  
 Работа второй кнопки при двух светодиодах  
-!([b21](https://github.com/LugenderGeist/Laboratory_Practice/tree/Kovaleva_lb1/images/second_button3.jpg))  
+!([b21](https://github.com/LugenderGeist/Laboratory_Practice/tree/Kovaleva_lb1/images/second_button3.jpg)  
 Работа второй кнопки при шести светодиодах  
 
 
