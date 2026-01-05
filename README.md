@@ -54,9 +54,9 @@
 ## Графики результатов работы
 Для иллюстрации работы алгоритма через MCU VIewer были сняты данные о состоянии переменных в процессе работы кода.  
 На первом графике можно увидеть, как работает первая кнопка (увеличивает число светодиодов). На 2-4 графиках можно увидеть, как изменяется количество светодиодов, включаемых за раз, а также как работает включение/выключение при 6-и светодиодах.  
-<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/first_button.jpg" width="500">  
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/first_button.jpg" width="500">
 <img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/second_button1.jpg" width="500">  
-<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/second_button2.jpg" width="500">  
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/second_button2.jpg" width="500">
 <img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/second_button3.jpg" width="500">  
 
 
