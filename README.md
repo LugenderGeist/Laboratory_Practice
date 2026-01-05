@@ -20,11 +20,11 @@
 В результате для настройки тактирования используются следующие строки:  
 **(uint32_t *)(0x40023800 + 0x30) |= 0x20 // тактирование для шины AHB1, для GPIOF*  
 **(uint32_t *)(0x40023800 + 0x30) |= 0x02 // тактирование для шины AHB1, для GPIOB*  
-Таблица из документации:  
-![taktirovanie](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/tact.jpg) 
+Таблица из документации: 
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/tact.jpg" width="500">
 
 Для дальнейшей настройки необходимо узнать адреса регистров, отвечающих за настройки литер GPIO:  
-![map](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/GPIO_map.jpg)    
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/GPIO_map.jpg" width="500">  
 Зная этот адрес можно настроить для каждого пина:
 - Вход или выход данных через функцию GPIOx_MODER (адрес - 0x00)  
 - Скорость работы пинов через функцию GPIOx_OSPEEDR (адрес - 0x08)
@@ -39,9 +39,9 @@
 
 Для включения и выключения светодиодов на них нужен подавать логический 0 или логическую 1. Как видно на рисунке 6, адрес функции, обеспечивающей подачу сигнала на пины - 0x14, для включения светодиода нужно подать 1 на соответствующий пин. Например, для включения светодиода, подключенного к пину F0 необходима следующая строка кода:  
 **(uint32_t*)(0x40021400 + 0x14) |= 0x01*  
-![scheme](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/output.jpg)  
-Для считывания кнопки нужно воспользоваться функцией получения данных с порта, ее адрес представлен на рисунке 7.  
-![scheme](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/input.jpg)   
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/output.jpg" width="500"> 
+Для считывания кнопки нужно воспользоваться функцией получения данных с порта, ее адрес представлен на рисунке 7. 
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/input.jpg" width="500"> 
 Например, кнопка подключенная к порту B10 обрабатывается следующим образом (после логического И в строке записывается номер пина, с которого считываются данные):  
 **(uint32_t *)(0x40020400 + 0x10) & 0x400*
 После настройки пинов для работы с периферийными устройствами можно перейти к реализации программного кода.  
@@ -49,17 +49,16 @@
 ## Реализация и описание программного кода
 Для повышения читаемости кода описание регистров находится в заголовочном файле init.h и сокращается с помощью более читаемых названий с помощью создания макросов через #define, а функции, в которых в том числе задаются настройки регистров, были в файл инициализации init.c. Подбробнее с реализацией функций и макросов можно ознамиться в соответствующих файлах.
 
-По заданию необходимо, чтобы первая кнопка определяла число включаемых светодиодов, а вторая - включала следующие светодиоды в заданном количестве. При этом в случае, если первая кнопка включает 6 светодиодов - вторая их выключает и включает. Отдельно реализованы функции выключения всех светодиодов, настройки регистров и считывания кнопки.  
-![scheme](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/block1.jpg)    
-![scheme](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/block2.jpg)   
-
+По заданию необходимо, чтобы первая кнопка определяла число включаемых светодиодов, а вторая - включала следующие светодиоды в заданном количестве. При этом в случае, если первая кнопка включает 6 светодиодов - вторая их выключает и включает. Отдельно реализованы функции выключения всех светодиодов, настройки регистров и считывания кнопки.    
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/block1.jpg" width="500">  
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/block2.jpg" width="500">  
 ## Графики результатов работы
 Для иллюстрации работы алгоритма через MCU VIewer были сняты данные о состоянии переменных в процессе работы кода.  
 На первом графике можно увидеть, как работает первая кнопка (увеличивает число светодиодов). На 2-4 графиках можно увидеть, как изменяется количество светодиодов, включаемых за раз, а также как работает включение/выключение при 6-и светодиодах.  
-![b21](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/first_button.jpg)   
-![b21](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/second_button1.jpg)  
-![b21](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/second_button2.jpg)  
-![b21](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/second_button3.jpg)  
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/first_button.jpg" width="500">  
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/second_button1.jpg" width="500">  
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/second_button2.jpg" width="500">  
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/second_button3.jpg" width="500">  
 
 
 
