@@ -37,11 +37,11 @@
 **(uint32_t *)(0x40021400 + 0x0C) |= 0x00      // нет подтяжки/стяжки*  
 
 Для включения и выключения светодиодов на них нужен подавать логический 0 или логическую 1. Как видно из таблицы ниже, адрес функции, обеспечивающей подачу сигнала на пины - 0x14, для включения светодиода нужно подать 1 на соответствующий пин. 
-<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/output.jpg" width="500"> 
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/output.jpg" width="500">  
 Например, для включения светодиода, подключенного к пину F0 необходима следующая строка кода:  
 **(uint32_t*)(0x40021400 + 0x14) |= 0x01*  
 Для считывания кнопки нужно воспользоваться функцией получения данных с порта, ее адрес представлен в таблице ниже.  
-<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/input.jpg" width="500">  
+<img src="https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/input.jpg" width="500">    
 Например, кнопка подключенная к порту B10 обрабатывается следующим образом (после логического И в строке записывается номер пина, с которого считываются данные):  
 **(uint32_t *)(0x40020400 + 0x10) & 0x400*
 После настройки пинов для работы с периферийными устройствами можно перейти к реализации программного кода.  
