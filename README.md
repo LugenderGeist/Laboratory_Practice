@@ -21,7 +21,7 @@
 Для литеры В;  
 *0x20*  
 Для литеры F.  
-![taktirovanie](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/takt.jpg)   
+![taktirovanie](https://github.com/LugenderGeist/Laboratory_Practice/blob/Kovaleva_lb1/images/tact.jpg)   
 В результате для настройки тактирования используются следующие строки:  
 
 **(uint32_t *)(0x40023800 + 0x30) |= 0x20 // тактирование для шины AHB1, для GPIOF*  
