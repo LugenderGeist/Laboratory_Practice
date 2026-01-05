@@ -1,9 +1,5 @@
 #include <stdint.h>
 
-// Первое число - литера GPIO
-// Второе число - настройка (RCC, MODER и  т.д.)
-// Число после равно - настройка для контретного бита или номер бита
-
 #define RCC_GPIO_ENF (*(uint32_t *)(0x40023800 + 0x30) |= 0x20) // тактирование для шины AHB1, для GPIOF
 #define RCC_GPIO_ENB (*(uint32_t *)(0x40023800 + 0x30) |= 0x02) // тактирование для шины AHB1, для GPIOB
 #define GPIOF_MODER (*(uint32_t *)(0x40021400 + 0x00))          // вход или выход портов F
@@ -22,4 +18,10 @@
 #define GPIO_SET4 0x100 // GPIO F4 01
 #define GPIO_SET5 0x400 // GPIO F5 01
 
-void GPIO_Init(void);
+// Выключение светодиодов
+#define GPIO_OFF0 0x10000 
+#define GPIO_OFF1 0x20000
+#define GPIO_OFF2 0x40000
+#define GPIO_OFF3 0x80000
+#define GPIO_OFF4 0x100000
+#define GPIO_OFF5 0x200000

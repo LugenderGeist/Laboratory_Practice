@@ -1,5 +1,4 @@
 #include "init.h"
-
 void GPIO_Init(void) { //настройка регистров для используемых пинов
     RCC_GPIO_ENF;
     RCC_GPIO_ENB;
@@ -14,12 +13,10 @@ void GPIO_Init(void) { //настройка регистров для испол
 }
 
 void off_all_led(void){ //выключение всех пинов
-    GPIO |= 0x10000;
-    GPIO |= 0x20000;
-    GPIO |= 0x40000;
-    GPIO |= 0x80000;
-    GPIO |= 0x100000;
-    GPIO |= 0x200000;
+    uint32_t gpio_off[] = {GPIO_OFF0, GPIO_OFF1, GPIO_OFF2, GPIO_OFF3, GPIO_OFF4, GPIO_OFF5};
+    for (int i = 0; i < 6; i++){
+        GPIO |= gpio_off[i]; 
+    }
 }
 
 int read_button(uint8_t button_pin){ // сигнал кнопки 1 или 0
